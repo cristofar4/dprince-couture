@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact — Dprince Couture</title>
 <meta name="description" content="Contact the Dprince Couture ateliers in Lagos and Abuja.">
-<meta name="theme-color" content="#F1EDE4">
+<meta name="theme-color" content="#ECEEE9">
 <meta property="og:title" content="Contact — Dprince Couture">
 <meta property="og:description" content="Contact the Dprince Couture ateliers in Lagos and Abuja.">
 <meta property="og:type" content="website">
@@ -34,7 +34,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="announcement">
-  <p>Complimentary nationwide delivery on orders above &#8358;500,000</p>
+  <p>Made to order in Lagos &amp; Abuja &middot; Commissions open for the AW26 season</p>
 </div>
 
 <header class="site-header">
@@ -45,11 +45,11 @@
         <li><a class="nav-link" href="lookbook.html">Lookbook</a></li>
         <li><a class="nav-link" href="journal.html">Journal</a></li>
         <li><a class="nav-link" href="about.html">About</a></li>
-        <li><a class="nav-link" href="booking.html">Booking</a></li>
+        <li><a class="nav-link" href="commission.html">Commission</a></li>
       </ul>
       <button type="button" class="menu-toggle" data-menu-toggle
               aria-expanded="false" aria-controls="mobile-menu">
-        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
         <span>Menu</span>
       </button>
     </nav>
@@ -57,10 +57,14 @@
     <a class="wordmark" href="index.html" aria-label="Dprince Couture, home">DPRINCE <span>COUTURE</span></a>
 
     <div class="header-utils">
-      <button type="button" class="bag-button" data-cart-open aria-haspopup="dialog">
-        <span aria-hidden="true">Bag</span>
-        <span class="bag-count" data-bag-count aria-hidden="true">0</span>
-        <span class="visually-hidden" data-bag-label>0 items in bag. Open shopping bag.</span>
+      <button type="button" class="header-action" data-search-open
+              aria-expanded="false" aria-controls="search-overlay">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+          <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M13.5 13.5 18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>Search</span>
+        <span class="visually-hidden">the collection</span>
       </button>
     </div>
   </div>
@@ -77,10 +81,11 @@
       <li><a class="mobile-menu__link" href="lookbook.html">Lookbook</a></li>
       <li><a class="mobile-menu__link" href="journal.html">Journal</a></li>
       <li><a class="mobile-menu__link" href="about.html">About</a></li>
-      <li><a class="mobile-menu__link" href="booking.html">Booking</a></li>
+      <li><a class="mobile-menu__link" href="commission.html">Commission</a></li>
     </ul>
   </nav>
   <div class="mobile-menu__foot">
+    <a class="link small" href="commission.html">Commission a piece</a>
     <a class="link small" href="contact.html">Contact the atelier</a>
     <a class="link small" href="client-services.html">Client services</a>
   </div>
@@ -178,8 +183,8 @@
             <a class="link" href="mailto:atelier@dprincecouture.com">atelier@dprincecouture.com</a><br>
             Closed Sundays and public holidays.
           </address>
-          <p class="small muted">For a fitting or commission, booking an appointment is faster than writing.</p>
-          <a class="btn-text" href="booking.html">Book an appointment</a>
+          <p class="small muted">For a fitting or commission, a commission request is faster than writing.</p>
+          <a class="btn-text" href="commission.html">Start a commission</a>
         </div>
       </div>
     </div>
@@ -194,7 +199,7 @@
       <div class="footer-brand">
         <span class="wordmark">DPRINCE <span>COUTURE</span></span>
         <p class="small">Ceremonial tailoring, made to be inherited. Cut in Lagos and Abuja since 2014.</p>
-        <a class="btn-text" href="booking.html">Book an appointment</a>
+        <a class="btn-text" href="commission.html">Commission a piece</a>
       </div>
 
       <div class="footer-col">
@@ -214,7 +219,8 @@
           <li><a href="about.html">About</a></li>
           <li><a href="lookbook.html">Lookbook</a></li>
           <li><a href="journal.html">Journal</a></li>
-          <li><a href="booking.html">Book an appointment</a></li>
+          <li><a href="commission.html">Commission a piece</a></li>
+          <li><a href="dashboard.html">Owner dashboard</a></li>
         </ul>
       </div>
 
@@ -247,24 +253,21 @@
   </div>
 </footer>
 
-<div class="drawer-backdrop" data-cart-backdrop></div>
-
-<aside class="drawer" data-cart-drawer role="dialog" aria-modal="true"
-       aria-labelledby="drawer-heading" aria-hidden="true">
-  <div class="drawer__head">
-    <h2 class="d4" id="drawer-heading">Your bag</h2>
-    <button type="button" class="icon-btn" data-cart-close aria-label="Close bag">&times;</button>
+<div class="search-overlay" id="search-overlay" data-search-overlay
+     role="dialog" aria-modal="true" aria-labelledby="search-heading" aria-hidden="true">
+  <div class="search-overlay__head">
+    <h2 class="label" id="search-heading">Search the collection</h2>
+    <button type="button" class="icon-btn" data-search-close aria-label="Close search">&times;</button>
   </div>
-  <div class="drawer__body">
-    <ul class="cart-lines" data-cart-lines role="list"></ul>
-    <div data-cart-empty></div>
+  <div class="search-field">
+    <label class="visually-hidden" for="search-input">Search for a style, colour or occasion</label>
+    <input type="search" id="search-input" data-search-input autocomplete="off"
+           placeholder="Agbada, kaftan, black&hellip;" spellcheck="false">
   </div>
-  <div class="drawer__foot" data-cart-has-items hidden>
-    <div class="cart-totals" data-cart-totals></div>
-    <a class="btn btn--primary btn--block" href="cart.html">View bag &amp; checkout</a>
-    <button type="button" class="btn btn--ghost btn--block" data-cart-close>Continue shopping</button>
-  </div>
-</aside>
+  <p class="search-meta" data-search-meta aria-live="polite">Type to search the collection</p>
+  <div class="search-suggestions" data-search-suggestions></div>
+  <div class="search-results" data-search-results></div>
+</div>
 
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CARD RENDERERS — shared by the homepage, shop and journal
+   CARD RENDERERS — shared by the homepage, shop, search and journal
    ========================================================================== */
 
 import { formatPrice } from '../data/site.js';
@@ -7,7 +7,10 @@ import { escapeHtml } from '../core/utils.js';
 
 /**
  * Product card markup.
- * `eager` skips lazy-loading for above-the-fold cards.
+ * `eager` skips lazy-loading for cards near the top of the page.
+ *
+ * Prices read "From ₦…" throughout: every piece is made to order, so the
+ * figure is a starting point for a commission, not a checkout total.
  */
 export function productCard(product, { eager = false } = {}) {
   const [main, hover] = product.images;
@@ -15,10 +18,13 @@ export function productCard(product, { eager = false } = {}) {
   const fetchPriority = eager ? 'high' : 'auto';
 
   const badge = product.badge
-    ? `<span class="product-card__badge">${escapeHtml(product.badge)}</span>`
-    : '';
+    ? `<span class="product-card__badge${product.isOwn ? ' product-card__badge--own' : ''}">${escapeHtml(product.badge)}</span>`
+    : product.isOwn
+      ? '<span class="product-card__badge product-card__badge--own">New design</span>'
+      : '';
 
-  const hoverImage = hover
+  // Only render a second image when it genuinely differs from the first
+  const hoverImage = hover && hover !== main
     ? `<img class="product-card__img product-card__img--hover" src="${escapeHtml(hover)}"
             alt="" aria-hidden="true" width="900" height="1200"
             loading="lazy" decoding="async">`
@@ -34,6 +40,7 @@ export function productCard(product, { eager = false } = {}) {
              width="900" height="1200"
              loading="${loading}" fetchpriority="${fetchPriority}" decoding="async">
         ${hoverImage}
+        <span class="product-card__action" aria-hidden="true">View &amp; request</span>
       </div>
       <div class="product-card__body">
         <h3 class="product-card__name">
@@ -42,7 +49,7 @@ export function productCard(product, { eager = false } = {}) {
         </h3>
         <p class="product-card__meta">
           <span>${escapeHtml(product.colour)}</span>
-          <span class="product-card__price">${formatPrice(product.price)}</span>
+          <span class="product-card__price">From ${formatPrice(product.price)}</span>
         </p>
       </div>
     </article>

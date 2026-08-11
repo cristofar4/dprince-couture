@@ -24,7 +24,7 @@ ol[role='list'] { list-style: none; }
 
 /* The HTML `hidden` attribute is display:none in the UA stylesheet, which any
    author `display` rule silently overrides. Several components toggle
-   visibility via `hidden` (bespoke CTA, drawer footer, empty states) and set
+   visibility via `hidden` (commission CTA, empty states, dashboard panels) and
    their own display, so this has to win. */
 [hidden] { display: none !important; }
 

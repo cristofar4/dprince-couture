@@ -1,11 +1,14 @@
 /* ==========================================================================
-   PRODUCT PAGE — gallery, size selection, quantity, accordion, add to bag
+   PRODUCT PAGE — gallery, details accordion, related pieces
+
+   There is no bag and no quantity stepper: every piece is made to order, so
+   the page ends in a commission request rather than a purchase. Sizes and
+   measurements are collected on the commission form, where they belong.
    ========================================================================== */
 
-import { getProduct, PRODUCTS } from '../data/products.js';
+import { getDesign, getCatalogue } from './store.js';
 import { formatPrice } from '../data/site.js';
 import { productCard } from './cards.js';
-import { addItem } from './cart.js';
 import { $, $$, escapeHtml, getParam, announce, prefersReducedMotion } from '../core/utils.js';
 import { revealBatch } from '../animations/shared.js';
 
@@ -14,11 +17,13 @@ export function initProduct() {
   if (!root) return;
 
   const id = getParam('id');
-  const product = getProduct(id) || PRODUCTS[0];
+  const catalogue = getCatalogue();
+  const product = getDesign(id) || catalogue[0];
+  if (!product) return;
 
-  if (!getProduct(id)) {
-    // Unknown or missing id — show the first piece rather than an error page,
-    // and correct the URL so refresh and sharing behave.
+  if (!getDesign(id)) {
+    // Unknown id — show the first piece and correct the URL so refresh and
+    // sharing behave, rather than presenting an error page.
     const url = new URL(window.location.href);
     url.searchParams.set('id', product.id);
     window.history.replaceState({}, '', url);
@@ -28,15 +33,13 @@ export function initProduct() {
 
   renderHead(product);
   renderGallery(product);
-  renderSizes(product);
   renderAccordion(product);
-  initQuantity();
-  initAddToBag(product);
-  renderRelated(product);
+  wireRequest(product);
+  renderRelated(product, catalogue);
 }
 
 /* ==========================================================================
-   HEAD — title, price, colour, breadcrumb
+   HEAD
    ========================================================================== */
 
 function renderHead(product) {
@@ -46,7 +49,7 @@ function renderHead(product) {
   };
 
   set('[data-product-name]', product.name);
-  set('[data-product-price]', formatPrice(product.price));
+  set('[data-product-price]', `From ${formatPrice(product.price)}`);
   set('[data-product-colour]', product.colour);
   set('[data-product-summary]', product.summary);
   set('[data-breadcrumb-name]', product.name);
@@ -55,6 +58,11 @@ function renderHead(product) {
   if (categoryLink) {
     categoryLink.textContent = product.category;
     categoryLink.href = `shop.html?category=${encodeURIComponent(product.category)}`;
+  }
+
+  const sizes = $('[data-product-sizes]');
+  if (sizes) {
+    sizes.textContent = product.sizes.join(' · ');
   }
 }
 
@@ -67,7 +75,9 @@ function renderGallery(product) {
   const thumbs = $('[data-gallery-thumbs]');
   if (!main || !thumbs) return;
 
-  const images = product.gallery?.length ? product.gallery : [{ src: product.images[0], alt: product.alt }];
+  const images = product.gallery?.length
+    ? product.gallery
+    : [{ src: product.images[0], alt: product.alt }];
 
   main.innerHTML = images
     .map((image, index) => `
@@ -80,6 +90,12 @@ function renderGallery(product) {
            decoding="async">
     `)
     .join('');
+
+  // A single image needs no thumbnail strip
+  if (images.length < 2) {
+    thumbs.hidden = true;
+    return;
+  }
 
   thumbs.innerHTML = images
     .map((image, index) => `
@@ -116,7 +132,6 @@ function renderGallery(product) {
 
     outgoing.classList.remove('is-active');
     incoming.classList.add('is-active');
-
     buttons[active]?.setAttribute('aria-current', 'false');
     buttons[next]?.setAttribute('aria-current', 'true');
 
@@ -130,7 +145,6 @@ function renderGallery(product) {
     show(parseInt(button.dataset.index, 10));
   });
 
-  // Left/right arrows move through the gallery when a thumb has focus
   thumbs.addEventListener('keydown', (event) => {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
     event.preventDefault();
@@ -142,108 +156,12 @@ function renderGallery(product) {
 }
 
 /* ==========================================================================
-   SIZES — radio cards, plus a Bespoke option routed to booking
+   REQUEST CTA
    ========================================================================== */
 
-function renderSizes(product) {
-  const container = $('[data-size-options]');
-  if (!container) return;
-
-  const options = [...product.sizes];
-  const single = options.length === 1;
-
-  container.innerHTML = options
-    .map((size, index) => `
-      <label class="radio-card">
-        <input type="radio" name="size" value="${escapeHtml(size)}"
-               ${single && index === 0 ? 'checked' : ''}>
-        <span class="radio-card__face">${escapeHtml(size)}</span>
-      </label>
-    `)
-    .join('') + `
-      <label class="radio-card">
-        <input type="radio" name="size" value="Bespoke">
-        <span class="radio-card__face">Bespoke</span>
-      </label>
-    `;
-
-  const note = $('[data-bespoke-note]');
-  container.addEventListener('change', (event) => {
-    const bespoke = event.target.value === 'Bespoke';
-    note?.classList.toggle('is-visible', bespoke);
-
-    const addButton = $('[data-add-to-bag]');
-    const bookButton = $('[data-book-instead]');
-    if (addButton) addButton.hidden = bespoke;
-    if (bookButton) bookButton.hidden = !bespoke;
-
-    // Clear a stale error the moment a size is chosen
-    const message = $('[data-size-message]');
-    if (message) { message.textContent = ''; message.className = 'field__message'; }
-  });
-}
-
-/* ==========================================================================
-   QUANTITY
-   ========================================================================== */
-
-function initQuantity() {
-  const wrap = $('[data-quantity]');
-  if (!wrap) return;
-
-  const value = $('[data-qty-value]', wrap);
-  const down = $('[data-qty-down]', wrap);
-  const up = $('[data-qty-up]', wrap);
-
-  function current() { return parseInt(value.textContent, 10) || 1; }
-
-  function set(next) {
-    const clamped = Math.min(Math.max(next, 1), 10);
-    value.textContent = String(clamped);
-    down.disabled = clamped <= 1;
-    up.disabled = clamped >= 10;
-    announce(`Quantity ${clamped}`);
-  }
-
-  down.addEventListener('click', () => set(current() - 1));
-  up.addEventListener('click', () => set(current() + 1));
-  set(1);
-}
-
-/* ==========================================================================
-   ADD TO BAG
-   ========================================================================== */
-
-function initAddToBag(product) {
-  const button = $('[data-add-to-bag]');
-  if (!button) return;
-
-  button.addEventListener('click', () => {
-    const selected = $('[data-size-options] input[name="size"]:checked');
-    const message = $('[data-size-message]');
-
-    if (!selected) {
-      if (message) {
-        message.textContent = 'Choose a size before adding to your bag.';
-        message.className = 'field__message field__message--error';
-      }
-      announce('Choose a size before adding to your bag.');
-      $('[data-size-options] input')?.focus();
-      return;
-    }
-
-    if (selected.value === 'Bespoke') {
-      window.location.href = `booking.html?piece=${encodeURIComponent(product.id)}`;
-      return;
-    }
-
-    const qty = parseInt($('[data-qty-value]')?.textContent, 10) || 1;
-    const added = addItem(product.id, selected.value, qty);
-
-    if (added) {
-      if (message) { message.textContent = ''; message.className = 'field__message'; }
-      document.dispatchEvent(new CustomEvent('cart:added'));
-    }
+function wireRequest(product) {
+  $$('[data-request-design]').forEach((link) => {
+    link.href = `commission.html?design=${encodeURIComponent(product.id)}`;
   });
 }
 
@@ -261,13 +179,14 @@ function renderAccordion(product) {
     { title: 'Fit & sizing', body: product.fit },
     { title: 'Care', body: product.care },
     {
-      title: 'Shipping & returns',
+      title: 'Commissioning this piece',
       body:
-        'Nationwide delivery in 3–5 working days, complimentary on orders above ₦500,000. ' +
-        'International delivery is quoted on request. Ready-to-wear may be returned within 14 days ' +
-        'unworn and with tags attached. Bespoke commissions are made to your measurements and cannot be returned.'
+        'Every garment is cut to the wearer. A ceremonial agbada takes ten to fourteen ' +
+        'weeks from first appointment to collection; a kaftan or senator, six to eight. ' +
+        'The figure shown is a starting point — final cost depends on cloth and the ' +
+        'amount of embroidery. Nothing is charged until the atelier has confirmed a quote.'
     }
-  ];
+  ].filter((panel) => panel.body && panel.body.trim());
 
   container.innerHTML = panels
     .map((panel, index) => {
@@ -298,9 +217,7 @@ export function initAccordionBehaviour(container) {
   const gsap = window.gsap;
   const reduced = prefersReducedMotion();
 
-  const items = $$('.accordion__item', container);
-
-  items.forEach((item) => {
+  $$('.accordion__item', container).forEach((item) => {
     const trigger = $('.accordion__trigger', item);
     const panel = $('.accordion__panel', item);
     const inner = $('.accordion__inner', item);
@@ -321,42 +238,30 @@ export function initAccordionBehaviour(container) {
 
       if (isOpen) {
         gsap.to(panel, {
-          height: 0,
-          duration: 0.45,
-          ease: 'power2.inOut',
+          height: 0, duration: 0.45, ease: 'power2.inOut',
           onComplete: () => window.ScrollTrigger?.refresh()
         });
       } else {
-        // Measure the natural height, then tween to it and release to auto
         const target = inner.offsetHeight;
-        gsap.fromTo(panel,
-          { height: 0 },
-          {
-            height: target,
-            duration: 0.45,
-            ease: 'power2.inOut',
-            onComplete: () => {
-              panel.style.height = 'auto';
-              window.ScrollTrigger?.refresh();
-            }
-          }
-        );
+        gsap.fromTo(panel, { height: 0 }, {
+          height: target, duration: 0.45, ease: 'power2.inOut',
+          onComplete: () => { panel.style.height = 'auto'; window.ScrollTrigger?.refresh(); }
+        });
       }
     });
   });
 }
 
 /* ==========================================================================
-   RELATED PIECES
+   RELATED
    ========================================================================== */
 
-function renderRelated(product) {
+function renderRelated(product, catalogue) {
   const container = $('[data-related]');
   if (!container) return;
 
-  // Same category first, then whatever else fills four slots
-  const sameCategory = PRODUCTS.filter((p) => p.category === product.category && p.id !== product.id);
-  const others = PRODUCTS.filter((p) => p.category !== product.category && p.id !== product.id);
+  const sameCategory = catalogue.filter((p) => p.category === product.category && p.id !== product.id);
+  const others = catalogue.filter((p) => p.category !== product.category && p.id !== product.id);
   const related = [...sameCategory, ...others].slice(0, 4);
 
   container.innerHTML = related.map((item) => productCard(item)).join('');

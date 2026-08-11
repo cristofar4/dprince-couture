@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Book an Appointment — Dprince Couture</title>
-<meta name="description" content="Book a bespoke commission, fitting or virtual consultation at the Lagos or Abuja atelier.">
-<meta name="theme-color" content="#F1EDE4">
-<meta property="og:title" content="Book an Appointment — Dprince Couture">
-<meta property="og:description" content="Book a bespoke commission, fitting or virtual consultation at the Lagos or Abuja atelier.">
+<title>Commission a Piece — Dprince Couture</title>
+<meta name="description" content="Choose a style, give your measurements and send a commission request to the Dprince Couture atelier in Lagos or Abuja.">
+<meta name="theme-color" content="#ECEEE9">
+<meta property="og:title" content="Commission a Piece — Dprince Couture">
+<meta property="og:description" content="Choose a style, give your measurements and send a commission request to the Dprince Couture atelier in Lagos or Abuja.">
 <meta property="og:type" content="website">
 
 <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,11 +30,11 @@
   })();
 </script>
 </head>
-<body data-page="booking">
+<body data-page="commission">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="announcement">
-  <p>Complimentary nationwide delivery on orders above &#8358;500,000</p>
+  <p>Made to order in Lagos &amp; Abuja &middot; Commissions open for the AW26 season</p>
 </div>
 
 <header class="site-header">
@@ -45,11 +45,11 @@
         <li><a class="nav-link" href="lookbook.html">Lookbook</a></li>
         <li><a class="nav-link" href="journal.html">Journal</a></li>
         <li><a class="nav-link" href="about.html">About</a></li>
-        <li><a class="nav-link" href="booking.html">Booking</a></li>
+        <li><a class="nav-link" href="commission.html">Commission</a></li>
       </ul>
       <button type="button" class="menu-toggle" data-menu-toggle
               aria-expanded="false" aria-controls="mobile-menu">
-        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
         <span>Menu</span>
       </button>
     </nav>
@@ -57,10 +57,14 @@
     <a class="wordmark" href="index.html" aria-label="Dprince Couture, home">DPRINCE <span>COUTURE</span></a>
 
     <div class="header-utils">
-      <button type="button" class="bag-button" data-cart-open aria-haspopup="dialog">
-        <span aria-hidden="true">Bag</span>
-        <span class="bag-count" data-bag-count aria-hidden="true">0</span>
-        <span class="visually-hidden" data-bag-label>0 items in bag. Open shopping bag.</span>
+      <button type="button" class="header-action" data-search-open
+              aria-expanded="false" aria-controls="search-overlay">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+          <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M13.5 13.5 18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>Search</span>
+        <span class="visually-hidden">the collection</span>
       </button>
     </div>
   </div>
@@ -77,10 +81,11 @@
       <li><a class="mobile-menu__link" href="lookbook.html">Lookbook</a></li>
       <li><a class="mobile-menu__link" href="journal.html">Journal</a></li>
       <li><a class="mobile-menu__link" href="about.html">About</a></li>
-      <li><a class="mobile-menu__link" href="booking.html">Booking</a></li>
+      <li><a class="mobile-menu__link" href="commission.html">Commission</a></li>
     </ul>
   </nav>
   <div class="mobile-menu__foot">
+    <a class="link small" href="commission.html">Commission a piece</a>
     <a class="link small" href="contact.html">Contact the atelier</a>
     <a class="link small" href="client-services.html">Client services</a>
   </div>
@@ -90,54 +95,79 @@
   <section class="masthead">
     <div class="container container--wide">
       <div class="masthead__inner">
-        <p class="eyebrow">Appointments</p>
-        <h1 class="masthead__title" data-split>Book with the atelier</h1>
+        <p class="eyebrow">Commission</p>
+        <h1 class="masthead__title" data-split>Tell us what you need made</h1>
         <p class="lead">
-          Commissions begin with ninety minutes and twenty-two measurements. Fittings
-          and virtual consultations are shorter. Tell us which you need.
+          Every garment is cut to one person. Choose a style to work from, give us
+          whatever measurements you have, and the atelier will come back with a quote
+          and a timeline.
         </p>
       </div>
     </div>
   </section>
 
   <div class="container container--wide">
-    <div class="booking-layout">
+    <div class="commission-layout">
       <div>
-        <p class="checkout-notice" data-piece-banner hidden></p>
+        <p class="notice" data-style-banner hidden></p>
 
-        <form class="booking-form" data-booking-form novalidate>
+        <form class="booking-form" data-commission-form novalidate>
 
           <fieldset class="booking-step">
-            <legend class="visually-hidden">Appointment type</legend>
+            <legend class="visually-hidden">Choose a style</legend>
             <div class="booking-step__head">
               <span class="booking-step__num">Step 01</span>
-              <h2 class="booking-step__title">What do you need?</h2>
+              <h2 class="booking-step__title">Which style?</h2>
+              <p class="small muted">
+                Pick the closest piece — it is a starting point, not a fixed design.
+                Choose &ldquo;Something else&rdquo; if you have your own idea.
+              </p>
             </div>
-            <div class="radio-cards radio-cards--stack" data-appointment-types></div>
+            <div class="style-picker" data-style-picker role="radiogroup"
+                 aria-label="Choose a style to work from"></div>
           </fieldset>
 
           <fieldset class="booking-step">
-            <legend class="visually-hidden">Atelier, date and time</legend>
+            <legend class="visually-hidden">Cloth and occasion</legend>
             <div class="booking-step__head">
               <span class="booking-step__num">Step 02</span>
-              <h2 class="booking-step__title">Where and when</h2>
-            </div>
-
-            <div class="field">
-              <span class="field__label" id="atelier-label">Atelier</span>
-              <div class="radio-cards" data-atelier-options role="radiogroup" aria-labelledby="atelier-label"></div>
+              <h2 class="booking-step__title">Cloth and occasion</h2>
             </div>
 
             <div class="field-row">
               <div class="field">
-                <label class="field__label" for="date">Preferred date <span class="req" aria-hidden="true">*</span></label>
-                <input class="field__control" type="date" id="date" name="date"
-                       data-booking-date data-validate="required" required>
-                <p class="field__message" data-date-note></p>
+                <label class="field__label" for="fabric">Preferred cloth</label>
+                <select class="field__control" id="fabric" name="fabric">
+                  <option value="">No preference &mdash; advise me</option>
+                  <option>Hand-loomed aso-oke</option>
+                  <option>Cotton damask</option>
+                  <option>Wool crepe</option>
+                  <option>Satin-faced twill</option>
+                  <option>Mercerised cotton</option>
+                  <option>Cotton-rich twill</option>
+                  <option>I will supply my own cloth</option>
+                </select>
+                <p class="field__message"></p>
               </div>
               <div class="field">
-                <span class="field__label" id="slot-label">Preferred time <span class="req" aria-hidden="true">*</span></span>
-                <div class="slot-grid" data-slot-grid role="radiogroup" aria-labelledby="slot-label"></div>
+                <label class="field__label" for="colour">Colour</label>
+                <input class="field__control" type="text" id="colour" name="colour"
+                       placeholder="Chalk white, obsidian, marigold&hellip;">
+                <p class="field__message"></p>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label class="field__label" for="occasion">Occasion</label>
+                <input class="field__control" type="text" id="occasion" name="occasion"
+                       placeholder="Wedding, chieftaincy, portrait">
+                <p class="field__message"></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="needed">Date it is needed</label>
+                <input class="field__control" type="date" id="needed" name="needed">
+                <p class="field__message"></p>
               </div>
             </div>
           </fieldset>
@@ -146,54 +176,20 @@
             <legend class="visually-hidden">Measurements</legend>
             <div class="booking-step__head">
               <span class="booking-step__num">Step 03</span>
-              <h2 class="booking-step__title">Measurements, if you have them</h2>
-              <p class="small muted">Entirely optional. We measure again in the atelier regardless.</p>
+              <h2 class="booking-step__title">Your measurements</h2>
+              <p class="small muted">
+                All optional. Give what you know &mdash; the atelier measures again
+                before cutting, so nothing here is binding.
+              </p>
             </div>
-            <div class="field-row field-row--3">
-
-          <div class="field">
-            <label class="field__label" for="chest">Chest (cm)</label>
-            <input class="field__control" type="number" id="chest" name="chest" min="0" max="300" inputmode="numeric">
-            <p class="field__message"></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="waist">Waist (cm)</label>
-            <input class="field__control" type="number" id="waist" name="waist" min="0" max="300" inputmode="numeric">
-            <p class="field__message"></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="hip">Hip (cm)</label>
-            <input class="field__control" type="number" id="hip" name="hip" min="0" max="300" inputmode="numeric">
-            <p class="field__message"></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="shoulder">Shoulder (cm)</label>
-            <input class="field__control" type="number" id="shoulder" name="shoulder" min="0" max="300" inputmode="numeric">
-            <p class="field__message"></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="sleeve">Sleeve length (cm)</label>
-            <input class="field__control" type="number" id="sleeve" name="sleeve" min="0" max="300" inputmode="numeric">
-            <p class="field__message"></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="height">Height (cm)</label>
-            <input class="field__control" type="number" id="height" name="height" min="0" max="300" inputmode="numeric">
-            <p class="field__message"></p>
-          </div>
-            </div>
+            <div class="measure-grid" data-measure-grid></div>
           </fieldset>
 
           <fieldset class="booking-step">
-            <legend class="visually-hidden">Occasion and contact details</legend>
+            <legend class="visually-hidden">Your details</legend>
             <div class="booking-step__head">
               <span class="booking-step__num">Step 04</span>
-              <h2 class="booking-step__title">About you</h2>
+              <h2 class="booking-step__title">How to reach you</h2>
             </div>
 
             <div class="field-row">
@@ -213,36 +209,33 @@
 
             <div class="field-row">
               <div class="field">
-                <label class="field__label" for="phone">Phone</label>
+                <label class="field__label" for="phone">Phone or WhatsApp</label>
                 <input class="field__control" type="tel" id="phone" name="phone"
                        autocomplete="tel" data-validate="phone" placeholder="+234 800 000 0000">
                 <p class="field__message"></p>
               </div>
               <div class="field">
-                <label class="field__label" for="occasion">Occasion</label>
-                <input class="field__control" type="text" id="occasion" name="occasion"
-                       placeholder="Wedding, chieftaincy, portrait">
+                <label class="field__label" for="city">City</label>
+                <input class="field__control" type="text" id="city" name="city"
+                       autocomplete="address-level2" placeholder="Lagos, Abuja, London&hellip;">
                 <p class="field__message"></p>
               </div>
             </div>
 
             <div class="field">
-              <label class="field__label" for="needed">Date the garment is needed</label>
-              <input class="field__control" type="date" id="needed" name="needed">
-              <p class="field__message"></p>
-            </div>
-
-            <div class="field">
-              <label class="field__label" for="notes">Anything else</label>
-              <textarea class="field__control" id="notes" name="notes" data-booking-notes
-                        rows="4" placeholder="Cloth preferences, colours, references"></textarea>
+              <label class="field__label" for="message">
+                Anything else <span class="req" aria-hidden="true">*</span>
+              </label>
+              <textarea class="field__control" id="message" name="message" rows="5"
+                        data-validate="required|minLength:10" required
+                        placeholder="Describe what you have in mind — references, embroidery, how you want it to sit."></textarea>
               <p class="field__message"></p>
             </div>
 
             <div class="field field--check">
               <input type="checkbox" id="consent" name="consent" required>
               <label for="consent">
-                I agree to Dprince Couture contacting me about this appointment request.
+                I agree to Dprince Couture contacting me about this request.
                 <span class="req" aria-hidden="true">*</span>
               </label>
               <p class="field__message" style="grid-column: 1 / -1"></p>
@@ -250,41 +243,36 @@
           </fieldset>
 
           <div class="stack stack--sm">
-            <button class="btn btn--primary" type="submit">Request this appointment</button>
+            <button class="btn btn--primary" type="submit">Send this request</button>
             <p class="field__message" data-form-status role="status" aria-live="polite"></p>
-            <p class="small muted">
-              Requests are confirmed by the atelier within one working day. Submitting
-              this form does not reserve the slot.
-            </p>
+            <p class="notice" data-delivery-notice></p>
           </div>
         </form>
 
-        <div class="booking-success" data-booking-success role="status">
+        <div class="commission-success" data-commission-success role="status">
           <p class="eyebrow eyebrow--plain">Request received</p>
-          <h2 class="d3">We have your request</h2>
-          <p class="booking-ref" data-booking-ref></p>
-          <p class="body-text muted" data-booking-recap></p>
-          <p class="body-text muted">
-            Your slot is <strong>not yet reserved</strong>. The atelier will confirm by
-            email within one working day, or propose the nearest alternative.
-          </p>
+          <h2 class="d3">Thank you</h2>
+          <p class="commission-ref" data-commission-ref></p>
+          <p class="body-text muted" data-commission-recap></p>
+          <p class="body-text muted" data-commission-note></p>
           <a class="btn btn--secondary" href="index.html">Back to the collection</a>
         </div>
       </div>
 
-      <aside class="booking-aside" aria-labelledby="summary-heading">
-        <h2 id="summary-heading">Your appointment</h2>
-        <dl class="booking-summary" data-booking-summary></dl>
+      <aside class="commission-aside" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Your request</h2>
+        <dl class="commission-summary" data-commission-summary></dl>
         <div class="stack stack--sm">
           <p class="small muted">
-            <strong>Lagos</strong><br>14 Musa Yar&rsquo;Adua Street, Victoria Island<br>
-            Monday &ndash; Saturday, 10:00 &ndash; 19:00
+            <strong>How long it takes</strong><br>
+            Ceremonial agbada: 10&ndash;14 weeks.<br>
+            Kaftan or senator: 6&ndash;8 weeks.
           </p>
           <p class="small muted">
-            <strong>Abuja</strong><br>8 Gana Street, Maitama<br>
-            Monday &ndash; Saturday, 10:00 &ndash; 18:00
+            <strong>What happens next</strong><br>
+            The atelier replies with a quote and a fitting date. Nothing is charged
+            until you have accepted it.
           </p>
-          <p class="small muted">Closed Sundays.</p>
         </div>
       </aside>
     </div>
@@ -299,7 +287,7 @@
       <div class="footer-brand">
         <span class="wordmark">DPRINCE <span>COUTURE</span></span>
         <p class="small">Ceremonial tailoring, made to be inherited. Cut in Lagos and Abuja since 2014.</p>
-        <a class="btn-text" href="booking.html">Book an appointment</a>
+        <a class="btn-text" href="commission.html">Commission a piece</a>
       </div>
 
       <div class="footer-col">
@@ -319,7 +307,8 @@
           <li><a href="about.html">About</a></li>
           <li><a href="lookbook.html">Lookbook</a></li>
           <li><a href="journal.html">Journal</a></li>
-          <li><a href="booking.html">Book an appointment</a></li>
+          <li><a href="commission.html">Commission a piece</a></li>
+          <li><a href="dashboard.html">Owner dashboard</a></li>
         </ul>
       </div>
 
@@ -352,24 +341,21 @@
   </div>
 </footer>
 
-<div class="drawer-backdrop" data-cart-backdrop></div>
-
-<aside class="drawer" data-cart-drawer role="dialog" aria-modal="true"
-       aria-labelledby="drawer-heading" aria-hidden="true">
-  <div class="drawer__head">
-    <h2 class="d4" id="drawer-heading">Your bag</h2>
-    <button type="button" class="icon-btn" data-cart-close aria-label="Close bag">&times;</button>
+<div class="search-overlay" id="search-overlay" data-search-overlay
+     role="dialog" aria-modal="true" aria-labelledby="search-heading" aria-hidden="true">
+  <div class="search-overlay__head">
+    <h2 class="label" id="search-heading">Search the collection</h2>
+    <button type="button" class="icon-btn" data-search-close aria-label="Close search">&times;</button>
   </div>
-  <div class="drawer__body">
-    <ul class="cart-lines" data-cart-lines role="list"></ul>
-    <div data-cart-empty></div>
+  <div class="search-field">
+    <label class="visually-hidden" for="search-input">Search for a style, colour or occasion</label>
+    <input type="search" id="search-input" data-search-input autocomplete="off"
+           placeholder="Agbada, kaftan, black&hellip;" spellcheck="false">
   </div>
-  <div class="drawer__foot" data-cart-has-items hidden>
-    <div class="cart-totals" data-cart-totals></div>
-    <a class="btn btn--primary btn--block" href="cart.html">View bag &amp; checkout</a>
-    <button type="button" class="btn btn--ghost btn--block" data-cart-close>Continue shopping</button>
-  </div>
-</aside>
+  <p class="search-meta" data-search-meta aria-live="polite">Type to search the collection</p>
+  <div class="search-suggestions" data-search-suggestions></div>
+  <div class="search-results" data-search-results></div>
+</div>
 
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>

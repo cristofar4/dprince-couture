@@ -111,7 +111,7 @@ html.lenis, html.lenis body { height: auto; }
 .lead {
   font-size: var(--t-lead);
   line-height: var(--lh-lead);
-  color: var(--slate);
+  color: var(--sage);
   max-width: 52ch;
 }
 
@@ -135,8 +135,8 @@ html.lenis, html.lenis body { height: auto; }
   text-transform: uppercase;
 }
 
-.muted { color: var(--slate); }
-.accent { color: var(--clay); }
+.muted { color: var(--sage); }
+.accent { color: var(--emerald); }
 
 /* An eyebrow label with a leading rule */
 .eyebrow {
@@ -147,7 +147,7 @@ html.lenis, html.lenis body { height: auto; }
   font-weight: var(--w-medium);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--slate);
+  color: var(--sage);
 }
 .eyebrow::before {
   content: '';
@@ -171,7 +171,7 @@ a { text-decoration: none; }
   transition: text-decoration-color var(--dur-fast) var(--ease-out),
               color var(--dur-fast) var(--ease-out);
 }
-.link:hover { text-decoration-color: var(--clay); color: var(--clay); }
+.link:hover { text-decoration-color: var(--emerald); color: var(--emerald); }
 
 /* ---- Focus --------------------------------------------------------------
    Never removed. Clay reads against both the bone ground and the ink footer. */
@@ -179,7 +179,7 @@ a { text-decoration: none; }
 :focus { outline: none; }
 
 :focus-visible {
-  outline: var(--border-thick) solid var(--clay);
+  outline: var(--border-thick) solid var(--emerald);
   outline-offset: 3px;
 }
 

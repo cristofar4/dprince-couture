@@ -258,3 +258,86 @@ export function initLazyVideo() {
 
   videos.forEach((video) => observer.observe(video));
 }
+
+/* ==========================================================================
+   HERO ROTATING PROMPT
+
+   A short question sits under the headline while the campaign film plays, and
+   the answer cycles: "a wedding agbada", "a coronation set", and so on. It
+   tells a visitor within seconds that the house makes something for their
+   occasion, which a silent campaign film does not.
+
+   The rotator has a fixed height in CSS, so swapping lines can never shift
+   the layout. Under reduced motion the lines still change — they just cut
+   rather than slide, because the information matters more than the movement.
+   ========================================================================== */
+
+export const HERO_PROMPTS = [
+  'a wedding agbada',
+  'a coronation set',
+  'a senator two-piece',
+  'something for Sunday',
+  'a kaftan cut to you',
+  'an heirloom for your son'
+];
+
+export function initHeroPrompt() {
+  const rotator = document.querySelector('[data-hero-rotator]');
+  if (!rotator) return;
+
+  const gsap = window.gsap;
+  const reduced = prefersReducedMotion();
+
+  // Build one element per phrase; only one is visible at a time.
+  rotator.innerHTML = HERO_PROMPTS
+    .map((text, index) => `<span class="hero__prompt-item"${index === 0 ? '' : ' aria-hidden="true"'}>${text}</span>`)
+    .join('');
+
+  const items = Array.from(rotator.children);
+  let index = 0;
+  let timer = null;
+
+  if (!gsap || reduced) {
+    // No GSAP or reduced motion: hard cut, same rhythm, no transform.
+    items.forEach((item, i) => { item.style.opacity = i === 0 ? '1' : '0'; });
+    timer = setInterval(() => {
+      items[index].style.opacity = '0';
+      items[index].setAttribute('aria-hidden', 'true');
+      index = (index + 1) % items.length;
+      items[index].style.opacity = '1';
+      items[index].removeAttribute('aria-hidden');
+    }, 3200);
+  } else {
+    gsap.set(items, { opacity: 0, yPercent: 100 });
+    gsap.set(items[0], { opacity: 1, yPercent: 0 });
+
+    timer = setInterval(() => {
+      const current = items[index];
+      const next = items[(index + 1) % items.length];
+
+      gsap.to(current, { opacity: 0, yPercent: -100, duration: 0.55, ease: 'power3.inOut' });
+      gsap.fromTo(next,
+        { opacity: 0, yPercent: 100 },
+        { opacity: 1, yPercent: 0, duration: 0.55, ease: 'power3.inOut' }
+      );
+
+      current.setAttribute('aria-hidden', 'true');
+      next.removeAttribute('aria-hidden');
+      index = (index + 1) % items.length;
+    }, 3200);
+  }
+
+  // Stop the loop when the hero is off screen — no point animating unseen,
+  // and it keeps the tab cheap when the visitor has scrolled away.
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) return;
+      clearInterval(timer);
+      timer = null;
+      observer.disconnect();
+    });
+  }, { threshold: 0 });
+  observer.observe(rotator);
+
+  window.addEventListener('beforeunload', () => clearInterval(timer), { once: true });
+}

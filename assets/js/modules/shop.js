@@ -2,7 +2,7 @@
    SHOP — category filtering, sorting, live result count
    ========================================================================== */
 
-import { PRODUCTS, CATEGORIES } from '../data/products.js';
+import { getCatalogue, getCategories, subscribe } from './store.js';
 import { productCard } from './cards.js';
 import { $, $$, announce, getParam, prefersReducedMotion } from '../core/utils.js';
 import { revealBatch } from '../animations/shared.js';
@@ -25,12 +25,12 @@ export function initShop() {
 
   // Deep links: shop.html?category=Kaftan
   const requested = getParam('category');
-  let activeCategory = CATEGORIES.includes(requested) ? requested : 'All';
+  let activeCategory = getCategories().includes(requested) ? requested : 'All';
   let activeSort = 'featured';
 
   /* ---- Filter chips ----------------------------------------------------- */
   if (chipContainer) {
-    chipContainer.innerHTML = CATEGORIES.map(
+    chipContainer.innerHTML = getCategories().map(
       (category) => `
         <button type="button" class="filter-chip" data-category="${category}"
                 aria-pressed="${category === activeCategory}">${category}</button>
@@ -60,9 +60,10 @@ export function initShop() {
 
   /* ---- Apply ------------------------------------------------------------ */
   function currentSet() {
+    const catalogue = getCatalogue();
     const filtered = activeCategory === 'All'
-      ? [...PRODUCTS]
-      : PRODUCTS.filter((product) => product.category === activeCategory);
+      ? catalogue
+      : catalogue.filter((product) => product.category === activeCategory);
     return filtered.sort(SORTS[activeSort] || SORTS.featured);
   }
 
@@ -113,4 +114,7 @@ export function initShop() {
 
   syncChips();
   apply({ silent: true });
+
+  // A design added in the dashboard should appear here without a reload
+  subscribe(() => apply({ silent: true }));
 }

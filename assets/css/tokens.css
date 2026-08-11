@@ -6,29 +6,33 @@
 
 :root {
   /* ---- Colour -----------------------------------------------------------
-     Sampled from the AW26 campaign photography. Contrast ratios against
-     --bone are noted; anything failing WCAG 2.2 AA for text is marked. */
-  --bone:        #F1EDE4;  /* page ground                                   */
-  --cloth:       #F5F2EB;  /* raised surfaces, drawers, cards               */
-  --ink:         #131313;  /* primary text, footer ground      16.4:1  AAA  */
-  --slate:       #5C5F61;  /* muted text, metadata, prices      5.0:1  AA   */
-  --rule:        #DDD6C8;  /* hairlines, dividers, field underlines         */
-  --clay:        #A4562F;  /* accent, links, focus ring         5.1:1  AA   */
-  --bronze:      #8B5E3C;  /* secondary accent, categories                  */
-  --gold:        #B39055;  /* DECORATIVE ONLY — 2.6:1, never text           */
-  --error:       #8C2F1E;  /* validation                        6.4:1  AA   */
-  --success:     #3F5F45;  /* confirmation                      6.0:1  AA   */
+     Deep emerald, cool bone and antique gold. Emerald carries the ceremonial
+     register without quoting the flag literally, and white, black and
+     marigold garments all sit cleanly against a cool ground.
+
+     Contrast is measured against --bone. Anything that fails WCAG 2.2 AA for
+     text is marked and is restricted to decorative use in the stylesheets. */
+  --bone:        #ECEEE9;  /* page ground, cool paper                       */
+  --cloth:       #F4F6F2;  /* raised surfaces, panels, cards                */
+  --ink:         #0E1A16;  /* primary text, dark sections      15.0:1  AAA  */
+  --emerald:     #1B4D3E;  /* brand accent, links, focus ring   8.1:1  AAA  */
+  --sage:        #576860;  /* muted text, metadata              5.0:1  AA   */
+  --rule:        #D3D8D2;  /* hairlines, dividers, field underlines         */
+  --gold:        #C6A15B;  /* DECORATIVE on light — 2.0:1.                  */
+                           /* Legible as TEXT ON --ink only     7.5:1  AAA  */
+  --error:       #A03328;  /* validation                        5.9:1  AA   */
+  --success:     #2F6B4F;  /* confirmation                      5.6:1  AA   */
 
   /* Product swatch greys — display only, never used for text */
   --swatch-slate: #6B6E70;
 
   /* Alpha helpers */
-  --ink-a08: rgba(19, 19, 19, 0.08);
-  --ink-a16: rgba(19, 19, 19, 0.16);
-  --ink-a60: rgba(19, 19, 19, 0.60);
-  --ink-a88: rgba(19, 19, 19, 0.88);
-  --bone-a12: rgba(241, 237, 228, 0.12);
-  --bone-a60: rgba(241, 237, 228, 0.60);
+  --ink-a08: rgba(14, 26, 22, 0.08);
+  --ink-a16: rgba(14, 26, 22, 0.16);
+  --ink-a60: rgba(14, 26, 22, 0.60);
+  --ink-a88: rgba(14, 26, 22, 0.88);
+  --bone-a12: rgba(236, 238, 233, 0.12);
+  --bone-a60: rgba(236, 238, 233, 0.60);
 
   /* ---- Type families ----------------------------------------------------
      Fraunces replaced Bodoni Moda late in the build: Bodoni Moda ships no
@@ -138,7 +142,7 @@
   --z-base: 1;
   --z-sticky: 40;
   --z-header: 50;
-  --z-drawer: 70;
+  --z-overlay: 70;
   --z-menu: 80;
   --z-cursor: 90;
   --z-transition: 95;

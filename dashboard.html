@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About — Dprince Couture</title>
-<meta name="description" content="A tailoring house cutting ceremonial agbada, kaftan and senator dress in Lagos and Abuja since 2014.">
+<title>Owner Dashboard — Dprince Couture</title>
+<meta name="description" content="Add designs to the collection and read commission requests.">
 <meta name="theme-color" content="#ECEEE9">
-<meta property="og:title" content="About — Dprince Couture">
-<meta property="og:description" content="A tailoring house cutting ceremonial agbada, kaftan and senator dress in Lagos and Abuja since 2014.">
+<meta property="og:title" content="Owner Dashboard — Dprince Couture">
+<meta property="og:description" content="Add designs to the collection and read commission requests.">
 <meta property="og:type" content="website">
 
 <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,7 +30,7 @@
   })();
 </script>
 </head>
-<body data-page="about">
+<body data-page="dashboard">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="announcement">
@@ -91,175 +91,155 @@
   </div>
 </div>
 
-<main id="main">
+<main id="main" data-dashboard>
   <section class="masthead">
     <div class="container container--wide">
       <div class="masthead__inner">
-        <p class="eyebrow">The house</p>
-        <h1 class="masthead__title" data-split>We make fourteen ceremonial agbada a year</h1>
-        <p class="lead">
-          That number is not a position. It is the honest capacity of one embroidery
-          bench, and it decides everything else about how this house works.
+        <p class="eyebrow">Owner</p>
+        <h1 class="masthead__title">Dashboard</h1>
+        <p class="notice notice--warn">
+          <strong>Everything here is saved in this browser only.</strong> Designs you add
+          appear on the shop and homepage on this device, and commission requests are
+          recorded here — but nothing is uploaded, because this build has no server.
+          Clearing your browser data will erase both. To publish a design to every
+          visitor, add it to <code>assets/js/data/products.js</code> or connect a
+          backend; the README explains both.
         </p>
       </div>
     </div>
   </section>
 
   <div class="container container--wide">
-    <div class="about-hero" data-anim="clip">
-      <img src="assets/img/editorial/campaign-agbada-02.webp"
-           alt="Ceremonial agbada in chalk white photographed against a dark facade in Lagos."
-           width="1200" height="800" loading="eager" fetchpriority="high" decoding="async">
-    </div>
-  </div>
+    <div class="dash-layout">
+      <nav class="dash-nav" role="tablist" aria-label="Dashboard sections">
+        <button type="button" role="tab" data-dash-tab="overview" aria-selected="true"
+                aria-controls="panel-overview" id="tab-overview">Overview</button>
+        <button type="button" role="tab" data-dash-tab="designs" aria-selected="false"
+                aria-controls="panel-designs" id="tab-designs">Designs</button>
+        <button type="button" role="tab" data-dash-tab="enquiries" aria-selected="false"
+                aria-controls="panel-enquiries" id="tab-enquiries">Requests</button>
+      </nav>
 
-  <section class="section" aria-labelledby="founding-heading">
-    <div class="container">
-      <div class="grid">
-        <div class="col-4 stack">
-          <p class="eyebrow">Since 2014</p>
-          <h2 class="d3" id="founding-heading" data-split>Beginning</h2>
-        </div>
-        <div class="col-7 start-6 stack">
-          <p class="lead">
-            The house began with a commission it was not equipped to take: a full
-            ceremonial ensemble, four pieces, eleven weeks, for a chieftaincy
-            ceremony in Ọ̀yọ́.
-          </p>
-          <p class="body-text muted">
-            It was delivered three days late and the shoulder was wrong. The client
-            wore it anyway, and afterwards explained precisely what was wrong with it
-            — the drape collapsed when he raised his arm to greet people, which is
-            the single thing a man does most at his own ceremony.
-          </p>
-          <p class="body-text muted">
-            That conversation is the reason this house exists in the form it does.
-            Every garment since has been fitted twice, in a basted state that looks
-            deliberately unfinished, so that the wearer can find what is wrong while
-            it can still be changed.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--top" aria-labelledby="pillars-heading">
-    <div class="container container--wide">
-      <div class="section-head">
-        <div class="section-head__text">
-          <p class="eyebrow">How we work</p>
-          <h2 class="d3" id="pillars-heading" data-split>Three commitments</h2>
-        </div>
-      </div>
-      <div class="pillars">
-        <div class="pillar" data-anim="rise">
-          <h3>Cloth with a source</h3>
-          <p>
-            Aso-oke is bought from four weaving families in Ìsẹ̀yìn, ordered a season
-            ahead at a price the weavers set. The narrow loom decides our motif sizes,
-            not the other way round.
-          </p>
-        </div>
-        <div class="pillar" data-anim="rise">
-          <h3>Construction you cannot see</h3>
-          <p>
-            Seams bound rather than overlocked. Embroidery on the ground cloth rather
-            than an applied panel. None of this photographs. All of it matters in 2046.
-          </p>
-        </div>
-        <div class="pillar" data-anim="rise">
-          <h3>A pace we do not compress</h3>
-          <p>
-            Ten to fourteen weeks for a ceremonial commission. We do not shorten it for
-            a fee, because the compression would come out of the fittings — the part
-            you are actually paying for.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="process-heading">
-    <div class="container container--wide">
-      <div class="craft__inner">
-        <div class="craft__media">
-          <video src="assets/video/atelier-craft.mp4"
-                 poster="assets/img/posters/atelier-craft.jpg"
-                 muted loop playsinline preload="none" data-lazy-play
-                 aria-label="Atelier film: chalk marking, pattern templates and cutting on dark cloth."></video>
-        </div>
-        <div class="craft__body">
-          <p class="eyebrow">The commission</p>
-          <h2 class="d3" id="process-heading" data-split>Four stages, ten to fourteen weeks</h2>
-          <div class="craft__steps">
-            <div class="craft__step">
-              <span class="craft__num" aria-hidden="true">01</span>
-              <div>
-                <h3>First appointment &mdash; 90 minutes</h3>
-                <p>Twenty-two measurement points, taken twice. Cloth selected. A conversation about the occasion, because a coronation garment and a wedding garment are different objects.</p>
-              </div>
+      <div>
+        <!-- ======================= OVERVIEW ======================= -->
+        <section class="dash-panel" data-dash-panel="overview" id="panel-overview"
+                 role="tabpanel" aria-labelledby="tab-overview" tabindex="0">
+          <div class="dash-head">
+            <h2 class="d4">At a glance</h2>
+            <span class="dash-badge" data-unread-badge>All read</span>
+          </div>
+          <div class="dash-stats">
+            <div class="dash-stat">
+              <p class="dash-stat__value" data-stat-designs>0</p>
+              <p class="dash-stat__label">Designs live</p>
             </div>
-            <div class="craft__step">
-              <span class="craft__num" aria-hidden="true">02</span>
-              <div>
-                <h3>Pattern and first cut &mdash; 3 weeks</h3>
-                <p>A paper pattern drafted specifically to you, then filed under your name. Every later commission starts from it rather than from a block.</p>
-              </div>
+            <div class="dash-stat">
+              <p class="dash-stat__value" data-stat-own>0</p>
+              <p class="dash-stat__label">Added by you</p>
             </div>
-            <div class="craft__step">
-              <span class="craft__num" aria-hidden="true">03</span>
-              <div>
-                <h3>First fitting &mdash; the honest one</h3>
-                <p>Presented basted, tacked in contrast thread, deliberately unfinished. It will look wrong. That is the point: this is the fitting where things get taken apart.</p>
-              </div>
-            </div>
-            <div class="craft__step">
-              <span class="craft__num" aria-hidden="true">04</span>
-              <div>
-                <h3>Second fitting and finish &mdash; 4 to 6 weeks</h3>
-                <p>Rebuilt, embroidered if the commission calls for it, pressed and delivered in a lined box with the pattern reference.</p>
-              </div>
+            <div class="dash-stat">
+              <p class="dash-stat__value" data-stat-enquiries>0</p>
+              <p class="dash-stat__label">Commission requests</p>
             </div>
           </div>
-          <a class="btn btn--primary" href="commission.html">Start a commission</a>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="notice">
+            <strong>Getting started.</strong> Open <em>Designs</em> to add a piece with a
+            photo, a price and a description. It appears immediately on the shop, the
+            homepage and in search. Open <em>Requests</em> to read what clients have sent.
+          </div>
+        </section>
 
-  <section class="section section--ink" aria-labelledby="quote-heading">
-    <div class="container">
-      <div class="quote-block">
-        <h2 class="visually-hidden" id="quote-heading">Founder&rsquo;s note</h2>
-        <blockquote>The client is not standing still in a studio. He is walking into a room where everyone already knows what he paid.</blockquote>
-        <cite>Founder&rsquo;s note, house archive</cite>
-      </div>
-    </div>
-  </section>
+        <!-- ======================== DESIGNS ======================== -->
+        <section class="dash-panel" data-dash-panel="designs" id="panel-designs"
+                 role="tabpanel" aria-labelledby="tab-designs" tabindex="0" hidden>
+          <div class="dash-head">
+            <h2 class="d4">Designs</h2>
+            <a class="btn-text" href="shop.html">View the shop</a>
+          </div>
 
+          <div class="dash-list" data-design-list></div>
 
-<section class="section" aria-labelledby="newsletter-heading">
-  <div class="container">
-    <div class="grid">
-      <div class="col-6 start-4 center-x stack stack--lg">
-        <p class="eyebrow eyebrow--plain">The house list</p>
-        <h2 class="d3" id="newsletter-heading" data-split>Collection releases, atelier notes, nothing else.</h2>
-        <form class="newsletter-form center-x" data-newsletter novalidate>
-          <div class="field">
-            <label class="field__label" for="newsletter-email">Email address</label>
-            <input class="field__control" type="email" id="newsletter-email" name="email"
-                   autocomplete="email" placeholder="name@example.com"
-                   data-validate="required|email" required>
+          <div class="dash-head" style="margin-block-start:var(--s8)">
+            <h2 class="d4" data-form-title>Add a design</h2>
+          </div>
+
+          <form class="dash-form" data-design-form novalidate>
+            <div class="field-row">
+              <div class="field">
+                <label class="field__label" for="d-name">Name <span class="req" aria-hidden="true">*</span></label>
+                <input class="field__control" type="text" id="d-name" name="name"
+                       data-validate="required|minLength:2" required
+                       placeholder="Ààrẹ Ceremonial Agbada">
+                <p class="field__message"></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="d-category">Category <span class="req" aria-hidden="true">*</span></label>
+                <select class="field__control" id="d-category" name="category"
+                        data-validate="required" required></select>
+                <p class="field__message"></p>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label class="field__label" for="d-price">Starting price (&#8358;) <span class="req" aria-hidden="true">*</span></label>
+                <input class="field__control" type="number" id="d-price" name="price"
+                       min="0" step="1000" inputmode="numeric"
+                       data-validate="required" required placeholder="450000">
+                <p class="field__message"></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="d-colour">Colour <span class="req" aria-hidden="true">*</span></label>
+                <input class="field__control" type="text" id="d-colour" name="colour"
+                       data-validate="required" required placeholder="Obsidian">
+                <p class="field__message"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="d-image">Photo</label>
+              <input class="field__control" type="file" id="d-image" accept="image/*" data-design-image>
+              <p class="small muted" data-image-hint>JPEG, PNG or WebP. Downscaled to 900px automatically.</p>
+              <p class="field__message"></p>
+              <div class="dash-preview" data-design-preview></div>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="d-summary">One-line summary</label>
+              <input class="field__control" type="text" id="d-summary" name="summary"
+                     placeholder="Liquid satin against a hand-woven placket.">
+              <p class="field__message"></p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="d-description">Description</label>
+              <textarea class="field__control" id="d-description" name="description" rows="5"
+                        placeholder="What the piece is, how it is cut, what makes it worth commissioning."></textarea>
+              <p class="field__message"></p>
+            </div>
+
+            <div class="cluster">
+              <button class="btn btn--primary" type="submit" data-form-submit>Add design</button>
+              <button class="btn btn--ghost" type="button" data-cancel-edit hidden>Cancel</button>
+            </div>
             <p class="field__message" data-form-status role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <!-- ======================= ENQUIRIES ======================= -->
+        <section class="dash-panel" data-dash-panel="enquiries" id="panel-enquiries"
+                 role="tabpanel" aria-labelledby="tab-enquiries" tabindex="0" hidden>
+          <div class="dash-head">
+            <h2 class="d4">Commission requests</h2>
+            <a class="btn-text" href="commission.html">Open the form</a>
           </div>
-          <button class="btn btn--primary" type="submit">Subscribe</button>
-        </form>
-        <p class="small muted">We write rarely. Unsubscribe in one click.</p>
+          <div class="dash-list" data-enquiry-list></div>
+        </section>
       </div>
     </div>
   </div>
-</section>
 
+  <div class="section"></div>
 </main>
 
 <footer class="site-footer">

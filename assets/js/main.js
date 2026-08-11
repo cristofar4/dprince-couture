@@ -11,23 +11,23 @@ import { initCursor } from './core/cursor.js';
 import { initIntro } from './core/intro.js';
 
 import { initNav } from './modules/nav.js';
-import { initCart } from './modules/cart.js';
+import { initSearch } from './modules/search.js';
 import { initShop } from './modules/shop.js';
 import { initProduct, initAccordionBehaviour } from './modules/product.js';
 import { initNewsletter, initContactForm } from './modules/forms.js';
-import { initBooking } from './modules/booking.js';
+import { initCommission } from './modules/commission.js';
+import { initDashboard } from './modules/dashboard.js';
+import { getCatalogue, subscribe } from './modules/store.js';
 
 import {
-  revealBatch,
-  initGenericReveals,
-  initSplitHeadings,
-  initStatement,
-  initParallax
+  revealBatch, initGenericReveals, initSplitHeadings, initStatement, initParallax
 } from './animations/shared.js';
-import { playHero, initHeroParallax, initCraftScrub, initCampaignSplit, initLazyVideo } from './animations/home.js';
+import {
+  playHero, initHeroParallax, initHeroPrompt, initCraftScrub,
+  initCampaignSplit, initLazyVideo
+} from './animations/home.js';
 import { initLookbook } from './animations/lookbook.js';
 
-import { PRODUCTS } from './data/products.js';
 import { ARTICLES, getArticle } from './data/journal.js';
 import { productCard, journalCard } from './modules/cards.js';
 import { $, $$, escapeHtml, getParam } from './core/utils.js';
@@ -44,27 +44,25 @@ function boot() {
   initTransitions();
   initCursor();
   initNav();
-  initCart();
+  initSearch();
   initNewsletter();
 
-  // Page modules
   const pages = {
     index: initHome,
     shop: initShop,
     product: initProduct,
-    lookbook: initLookbookPage,
+    lookbook: initLookbook,
     about: () => {},
     journal: initJournalIndex,
     article: initArticlePage,
     contact: initContactForm,
-    cart: () => {},
-    booking: initBooking,
+    commission: initCommission,
+    dashboard: initDashboard,
     'client-services': initServicesPage
   };
 
   pages[page]?.();
 
-  // Shared reveals run after page content is in the DOM
   initGenericReveals();
   initSplitHeadings();
   initStatement();
@@ -74,7 +72,10 @@ function boot() {
   // The intro only exists on the homepage; elsewhere the callback fires
   // immediately and the hero timeline is a no-op.
   initIntro(() => {
-    if (page === 'index') playHero();
+    if (page === 'index') {
+      playHero();
+      initHeroPrompt();
+    }
     window.ScrollTrigger?.refresh();
   });
 }
@@ -83,42 +84,37 @@ function boot() {
    HOMEPAGE
    ========================================================================== */
 
-function initHome() {
-  // New arrivals — first four load eagerly, they are close to the fold
+function paintHome() {
+  const catalogue = getCatalogue();
+
   const arrivals = $('[data-new-arrivals]');
   if (arrivals) {
-    const items = PRODUCTS.filter((product) => product.newArrival).slice(0, 8);
-    arrivals.innerHTML = items.map((product, index) => productCard(product, { eager: index < 4 })).join('');
+    const items = catalogue.filter((product) => product.newArrival).slice(0, 8);
+    arrivals.innerHTML = items.map((p, i) => productCard(p, { eager: i < 4 })).join('');
   }
 
-  // Selected pieces
   const selected = $('[data-selected-products]');
   if (selected) {
-    const items = PRODUCTS.filter((product) => product.featured).slice(0, 3);
+    const items = catalogue.filter((product) => product.featured).slice(0, 3);
     selected.innerHTML = items.map((product) => productCard(product)).join('');
   }
 
-  // Journal preview
   const journal = $('[data-journal-preview]');
-  if (journal) {
-    journal.innerHTML = ARTICLES.slice(0, 3).map(journalCard).join('');
-  }
+  if (journal) journal.innerHTML = ARTICLES.slice(0, 3).map(journalCard).join('');
 
   revealBatch('[data-new-arrivals] [data-anim="rise"]');
   revealBatch('[data-selected-products] [data-anim="rise"]');
   revealBatch('[data-journal-preview] [data-anim="rise"]');
+}
+
+function initHome() {
+  paintHome();
+  // A design added in the dashboard shows up here without a reload
+  subscribe(paintHome);
 
   initHeroParallax();
   initCampaignSplit();
   initCraftScrub();
-  initLookbook();
-}
-
-/* ==========================================================================
-   LOOKBOOK PAGE
-   ========================================================================== */
-
-function initLookbookPage() {
   initLookbook();
 }
 
@@ -159,7 +155,7 @@ function initJournalIndex() {
 }
 
 /* ==========================================================================
-   ARTICLE PAGE
+   ARTICLE
    ========================================================================== */
 
 function initArticlePage() {
@@ -215,8 +211,7 @@ function initArticlePage() {
 
   const related = $('[data-article-related]');
   if (related) {
-    const others = ARTICLES.filter((item) => item.id !== article.id).slice(0, 3);
-    related.innerHTML = others.map(journalCard).join('');
+    related.innerHTML = ARTICLES.filter((item) => item.id !== article.id).slice(0, 3).map(journalCard).join('');
     revealBatch('[data-article-related] [data-anim="rise"]');
   }
 }

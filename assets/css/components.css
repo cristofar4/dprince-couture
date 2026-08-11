@@ -108,7 +108,9 @@
   gap: var(--s4);
 }
 
-.bag-button {
+/* Header action — search. The house takes commissions rather than orders,
+   so there is no bag; finding a style is the job this control does. */
+.header-action {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -121,23 +123,94 @@
   font-weight: var(--w-medium);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
+  transition: color var(--dur-fast) var(--ease-out);
 }
-.bag-count {
-  display: inline-grid;
-  place-items: center;
-  min-width: 1.375rem;
-  height: 1.375rem;
-  padding-inline: 0.3rem;
-  border: var(--border) solid currentColor;
-  border-radius: 50%;
-  font-size: var(--t-micro);
-  font-weight: var(--w-semi);
-  letter-spacing: 0;
-  line-height: 1;
-}
-.bag-count.is-filled { background-color: var(--clay); border-color: var(--clay); color: var(--bone); }
+.header-action:hover { color: var(--emerald); }
+.header-action svg { width: 18px; height: 18px; flex: none; }
 
-/* Hamburger — hidden until tablet */
+/* ==========================================================================
+   SEARCH OVERLAY
+   ========================================================================== */
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  background-color: var(--bone);
+  padding: var(--s5) var(--margin-x) var(--s8);
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
+}
+.search-overlay.is-open { visibility: visible; }
+
+.search-overlay__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  min-height: 3rem;
+  margin-block-end: var(--s7);
+}
+
+.search-field {
+  position: relative;
+  border-block-end: var(--border-thick) solid var(--ink);
+  margin-block-end: var(--s5);
+}
+.search-field input {
+  width: 100%;
+  padding: var(--s3) 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: var(--w-display);
+  font-variation-settings: 'opsz' 96;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.search-field input:focus-visible { outline: none; }
+.search-field input::placeholder { color: var(--rule); }
+
+.search-meta {
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-block-end: var(--s5);
+}
+
+.search-results {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s6) var(--gutter);
+  align-content: start;
+}
+
+.search-suggestions { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.search-suggestion {
+  min-height: var(--tap-min);
+  padding-inline: var(--s3);
+  border: var(--border) solid var(--rule);
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--sage);
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.search-suggestion:hover { border-color: var(--ink); color: var(--ink); }
+
+@media (max-width: 1023px) { .search-results { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 767px)  { .search-results { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Hamburger — hidden until tablet.
+   Three bars at 2px, not two at 1px: hairline rules read as decoration on a
+   phone screen and get missed entirely. This is a control, so it is drawn
+   like one. */
 .menu-toggle {
   display: none;
   align-items: center;
@@ -152,14 +225,19 @@
 .menu-toggle__bars {
   display: grid;
   gap: 5px;
-  width: 22px;
+  width: 24px;
+  flex: none;
 }
 .menu-toggle__bars span {
   display: block;
-  height: 1px;
+  height: 2px;
   background-color: currentColor;
   transition: transform var(--dur-fast) var(--ease-out),
               opacity var(--dur-fast) var(--ease-out);
+}
+/* Middle bar shortens on hover — a small sign the control is live */
+@media (hover: hover) and (pointer: fine) {
+  .menu-toggle:hover .menu-toggle__bars span:nth-child(2) { transform: scaleX(0.6); transform-origin: left; }
 }
 
 /* ==========================================================================
@@ -237,7 +315,7 @@
 }
 
 .btn--primary { background-color: var(--ink); color: var(--bone); border-color: var(--ink); }
-.btn--primary:hover:not(:disabled) { background-color: var(--clay); border-color: var(--clay); }
+.btn--primary:hover:not(:disabled) { background-color: var(--emerald); border-color: var(--emerald); }
 
 .btn--secondary { background-color: transparent; color: var(--ink); border-color: var(--ink); }
 .btn--secondary:hover:not(:disabled) { background-color: var(--ink); color: var(--bone); }
@@ -297,9 +375,9 @@
   font-weight: var(--w-medium);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--slate);
+  color: var(--sage);
 }
-.field__label .req { color: var(--clay); }
+.field__label .req { color: var(--emerald); }
 
 .field__control {
   width: 100%;
@@ -313,21 +391,21 @@
   color: var(--ink);
   transition: border-color var(--dur-fast) var(--ease-out);
 }
-.field__control::placeholder { color: var(--slate); opacity: 0.6; }
-.field__control:hover { border-block-end-color: var(--slate); }
+.field__control::placeholder { color: var(--sage); opacity: 0.6; }
+.field__control:hover { border-block-end-color: var(--sage); }
 .field__control:focus-visible {
   border-block-end-width: var(--border-thick);
   border-block-end-color: var(--ink);
   outline: none;
 }
 /* Keyboard focus still needs a visible ring for users who miss the underline */
-.field__control:focus-visible { box-shadow: 0 2px 0 0 var(--clay); }
+.field__control:focus-visible { box-shadow: 0 2px 0 0 var(--emerald); }
 
 textarea.field__control { min-height: 8rem; resize: vertical; line-height: var(--lh-body); }
 
 select.field__control {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235C5F61' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23576860' stroke-width='1.2'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right var(--s1) center;
   padding-inline-end: var(--s5);
@@ -370,7 +448,7 @@ select.field__control {
   cursor: pointer;
   flex: none;
 }
-.field--check label { font-size: var(--t-small); line-height: var(--lh-lead); color: var(--slate); }
+.field--check label { font-size: var(--t-small); line-height: var(--lh-lead); color: var(--sage); }
 
 /* Radio cards — sizes, appointment types */
 .radio-cards { display: flex; flex-wrap: wrap; gap: var(--s2); }
@@ -400,14 +478,14 @@ select.field__control {
               background-color var(--dur-fast) var(--ease-out),
               color var(--dur-fast) var(--ease-out);
 }
-.radio-card input:hover + .radio-card__face { border-color: var(--slate); }
+.radio-card input:hover + .radio-card__face { border-color: var(--sage); }
 .radio-card input:checked + .radio-card__face {
   background-color: var(--ink);
   border-color: var(--ink);
   color: var(--bone);
 }
 .radio-card input:focus-visible + .radio-card__face {
-  outline: var(--border-thick) solid var(--clay);
+  outline: var(--border-thick) solid var(--emerald);
   outline-offset: 3px;
 }
 .radio-card input:disabled + .radio-card__face {
@@ -431,7 +509,7 @@ select.field__control {
   font-size: var(--t-small);
   letter-spacing: 0;
   text-transform: none;
-  color: var(--slate);
+  color: var(--sage);
   font-weight: var(--w-body);
 }
 .radio-card--wide input:checked + .radio-card__face .radio-card__meta { color: var(--bone-a60); }
@@ -462,9 +540,24 @@ select.field__control {
 
 /* ==========================================================================
    PRODUCT CARD
+
+   Each image is mounted on a cloth panel with a margin, like a plate in a
+   museum catalogue. The supplied photography has wildly inconsistent
+   backgrounds — studio walls, living rooms, tripods — and a full-bleed grid
+   makes that read as carelessness. A consistent mount makes it read as a
+   catalogue instead, which is the house's reference anyway.
    ========================================================================== */
 
-.product-card { position: relative; display: grid; gap: var(--s3); }
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cloth);
+  border: var(--border) solid var(--rule);
+  padding: var(--s3);
+  transition: border-color var(--dur-base) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out);
+}
 
 .product-card__media {
   position: relative;
@@ -483,16 +576,39 @@ select.field__control {
 }
 .product-card__img--hover { opacity: 0; }
 
+/* Hover affordance — says what the card does, since nothing here is "buy" */
+.product-card__action {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: var(--s3);
+  background: linear-gradient(to top, var(--ink-a88), transparent);
+  color: var(--bone);
+  font-size: var(--t-micro);
+  font-weight: var(--w-semi);
+  letter-spacing: var(--ls-micro);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .product-card:hover .product-card__img--hover { opacity: 1; transform: scale(1.03); }
-  .product-card:hover .product-card__img--main { transform: scale(1.03); }
+  .product-card:hover { border-color: var(--emerald); }
+  .product-card:hover .product-card__img--hover { opacity: 1; transform: scale(1.04); }
+  .product-card:hover .product-card__img--main { transform: scale(1.04); }
+  .product-card:hover .product-card__action { opacity: 1; transform: translateY(0); }
   .product-card:hover .product-card__name { text-decoration-color: var(--ink); }
 }
+/* Keyboard users get the same affordance the mouse gets */
+.product-card:focus-within { border-color: var(--emerald); }
+.product-card:focus-within .product-card__action { opacity: 1; transform: translateY(0); }
 
 .product-card__badge {
   position: absolute;
-  top: var(--s3);
-  left: var(--s3);
+  top: var(--s2);
+  left: var(--s2);
   z-index: 2;
   padding: var(--s1) var(--s2);
   background-color: var(--bone);
@@ -502,8 +618,14 @@ select.field__control {
   letter-spacing: var(--ls-micro);
   text-transform: uppercase;
 }
+.product-card__badge--own { background-color: var(--emerald); color: var(--bone); }
 
-.product-card__body { display: grid; gap: var(--s1); }
+.product-card__body {
+  display: grid;
+  gap: var(--s1);
+  padding: var(--s4) var(--s1) var(--s1);
+  margin-block-start: auto;
+}
 
 .product-card__name {
   font-size: var(--t-body);
@@ -515,7 +637,7 @@ select.field__control {
   text-decoration-thickness: 1px;
   transition: text-decoration-color var(--dur-fast) var(--ease-out);
 }
-/* The whole card is clickable, but only the name is the accessible link */
+/* Whole card is clickable; only the name is the accessible link */
 .product-card__link::after { content: ''; position: absolute; inset: 0; z-index: 1; }
 
 .product-card__meta {
@@ -524,9 +646,10 @@ select.field__control {
   justify-content: space-between;
   gap: var(--s3);
   font-size: var(--t-small);
-  color: var(--slate);
+  color: var(--sage);
 }
-.product-card__price { font-variant-numeric: tabular-nums; }
+/* Made to order, so every figure is a starting point, never a checkout price */
+.product-card__price { font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 /* ==========================================================================
    FILTER BAR
@@ -552,7 +675,7 @@ select.field__control {
   font-weight: var(--w-medium);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--slate);
+  color: var(--sage);
   transition: color var(--dur-fast) var(--ease-out),
               border-color var(--dur-fast) var(--ease-out);
 }
@@ -560,7 +683,7 @@ select.field__control {
 .filter-chip[aria-pressed='true'] { color: var(--ink); border-block-end-color: var(--ink); }
 
 .filter-meta { display: flex; align-items: center; gap: var(--s4); }
-.result-count { font-size: var(--t-small); color: var(--slate); font-variant-numeric: tabular-nums; }
+.result-count { font-size: var(--t-small); color: var(--sage); font-variant-numeric: tabular-nums; }
 
 .sort-select {
   min-height: var(--tap-min);
@@ -573,7 +696,7 @@ select.field__control {
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23131313' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230E1A16' stroke-width='1.2'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right center;
   cursor: pointer;
@@ -588,46 +711,23 @@ select.field__control {
 }
 
 /* ==========================================================================
-   CART DRAWER
+   NOTICE — used wherever the site must state a limit plainly
+   (demo-mode form delivery, browser-only dashboard storage)
    ========================================================================== */
 
-.drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-drawer);
-  background-color: var(--ink-a60);
-  opacity: 0;
-  visibility: hidden;
-}
-.drawer-backdrop.is-open { visibility: visible; }
-
-.drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: calc(var(--z-drawer) + 1);
-  width: min(30rem, 100vw);
+.notice {
+  padding: var(--s4);
+  border: var(--border) solid var(--rule);
+  border-left: 3px solid var(--emerald);
   background-color: var(--cloth);
-  box-shadow: var(--shadow-overlay);
-  display: flex;
-  flex-direction: column;
-  transform: translateX(100%);
-  visibility: hidden;
+  font-size: var(--t-small);
+  line-height: var(--lh-lead);
+  color: var(--sage);
 }
-.drawer.is-open { visibility: visible; }
+.notice strong { color: var(--ink); font-weight: var(--w-medium); }
+.notice--warn { border-left-color: var(--gold); }
 
-.drawer__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s4);
-  padding: var(--s5) var(--s5) var(--s4);
-  border-block-end: var(--border) solid var(--rule);
-}
-.drawer__body { flex: 1; overflow-y: auto; padding: var(--s5); }
-.drawer__foot { padding: var(--s5); border-block-start: var(--border) solid var(--rule); display: grid; gap: var(--s4); }
-
+/* Icon button — overlay closers */
 .icon-btn {
   display: grid;
   place-items: center;
@@ -637,64 +737,7 @@ select.field__control {
   line-height: 1;
   transition: color var(--dur-fast) var(--ease-out);
 }
-.icon-btn:hover { color: var(--clay); }
-
-/* Cart line item — shared by drawer and cart page */
-.cart-line {
-  display: grid;
-  grid-template-columns: 5rem 1fr;
-  gap: var(--s4);
-  padding-block: var(--s4);
-  border-block-end: var(--border) solid var(--rule);
-}
-.cart-line:first-child { padding-block-start: 0; }
-.cart-line__media { aspect-ratio: var(--ar-product); background-color: var(--rule); overflow: hidden; }
-.cart-line__media img { width: 100%; height: 100%; object-fit: cover; }
-.cart-line__body { display: grid; gap: var(--s2); align-content: start; }
-.cart-line__top { display: flex; justify-content: space-between; gap: var(--s3); align-items: baseline; }
-.cart-line__name { font-size: var(--t-small); font-weight: var(--w-medium); line-height: 1.4; }
-.cart-line__price { font-size: var(--t-small); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.cart-line__meta { font-size: var(--t-small); color: var(--slate); }
-.cart-line__actions { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); }
-.cart-line__remove {
-  font-size: var(--t-label);
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--slate);
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-  text-decoration-color: var(--rule);
-  min-height: var(--tap-min);
-}
-.cart-line__remove:hover { color: var(--error); text-decoration-color: var(--error); }
-
-.cart-totals { display: grid; gap: var(--s2); }
-.cart-total-row {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--s3);
-  font-size: var(--t-small);
-  color: var(--slate);
-}
-.cart-total-row--grand {
-  padding-block-start: var(--s3);
-  border-block-start: var(--border) solid var(--rule);
-  color: var(--ink);
-  font-size: var(--t-body);
-  font-weight: var(--w-medium);
-}
-.cart-total-row span:last-child { font-variant-numeric: tabular-nums; }
-
-/* The frontend/production boundary — stated plainly, never disguised */
-.checkout-notice {
-  padding: var(--s4);
-  border: var(--border) solid var(--rule);
-  background-color: var(--bone);
-  font-size: var(--t-small);
-  line-height: var(--lh-lead);
-  color: var(--slate);
-}
-.checkout-notice strong { color: var(--ink); font-weight: var(--w-medium); }
+.icon-btn:hover { color: var(--emerald); }
 
 /* ==========================================================================
    ACCORDION
@@ -718,7 +761,7 @@ select.field__control {
   text-transform: uppercase;
   transition: color var(--dur-fast) var(--ease-out);
 }
-.accordion__trigger:hover { color: var(--clay); }
+.accordion__trigger:hover { color: var(--emerald); }
 
 .accordion__icon { position: relative; width: 12px; height: 12px; flex: none; }
 .accordion__icon::before,
@@ -733,7 +776,7 @@ select.field__control {
 .accordion__trigger[aria-expanded='true'] .accordion__icon::after { transform: translateX(-50%) scaleY(0); }
 
 .accordion__panel { overflow: hidden; height: 0; }
-.accordion__inner { padding-block-end: var(--s5); font-size: var(--t-body); line-height: var(--lh-body); color: var(--slate); max-width: 60ch; }
+.accordion__inner { padding-block-end: var(--s5); font-size: var(--t-body); line-height: var(--lh-body); color: var(--sage); max-width: 60ch; }
 
 /* ==========================================================================
    NEWSLETTER
@@ -888,7 +931,7 @@ select.field__control {
   bottom: var(--s5);
   left: 50%;
   transform: translateX(-50%);
-  z-index: var(--z-drawer);
+  z-index: var(--z-menu);
   padding: var(--s3) var(--s5);
   background-color: var(--ink);
   color: var(--bone);
@@ -930,18 +973,23 @@ select.field__control {
   .header-inner .wordmark { font-size: 0.8125rem; letter-spacing: 0.14em; }
   .header-inner .wordmark span { letter-spacing: 0.16em; }
 
-  .menu-toggle > span:not(.menu-toggle__bars) { position: absolute; width: 1px; height: 1px;
-    padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .menu-toggle { justify-content: flex-start; }
+  .header-action { justify-content: flex-end; }
 
-  .bag-button > span[aria-hidden='true']:not(.bag-count) { position: absolute; width: 1px; height: 1px;
-    padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .bag-button { justify-content: flex-end; }
+  /* Below 480px the wordmark needs the room, so the button labels drop to
+     visually-hidden. The bars and the search glyph still read clearly. */
+  @media (max-width: 479px) {
+    .menu-toggle > span:not(.menu-toggle__bars),
+    .header-action > span:not(.visually-hidden) {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip-path: inset(50%); white-space: nowrap;
+    }
+  }
 
-  .drawer { width: 100vw; }
+  .search-overlay { padding-inline: var(--margin-x); }
   .footer-grid { grid-template-columns: 1fr; gap: var(--s7); }
   .footer-brand { grid-column: span 1; }
   .filter-bar { gap: var(--s3); }
   .newsletter-row { flex-direction: column; align-items: stretch; }
-  .cart-line { grid-template-columns: 4.5rem 1fr; }
 }
