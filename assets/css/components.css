@@ -242,6 +242,11 @@
 
 /* ==========================================================================
    MOBILE MENU
+
+   The menu is where a phone visitor goes when they want something specific,
+   and for a tailoring house that is usually "how do I reach you". Contact is
+   therefore a first-class block with real tap targets — call, WhatsApp, email
+   — not a line of small print at the bottom.
    ========================================================================== */
 
 .mobile-menu {
@@ -251,9 +256,11 @@
   background-color: var(--bone);
   display: flex;
   flex-direction: column;
-  padding: var(--s5) var(--margin-x) var(--s8);
+  padding: var(--s4) var(--margin-x) var(--s6);
   transform: translateX(100%);
   visibility: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .mobile-menu.is-open { visibility: visible; }
 
@@ -262,31 +269,102 @@
   align-items: center;
   justify-content: space-between;
   min-height: 3rem;
-  margin-block-end: var(--s8);
+  margin-block-end: var(--s5);
+  flex: none;
 }
 
 .mobile-menu__list {
   list-style: none;
   display: grid;
-  gap: var(--s2);
+  flex: none;
 }
 .mobile-menu__link {
   display: block;
   padding-block: var(--s3);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 9vw, 3rem);
+  font-size: clamp(1.5rem, 6.5vw, 2.25rem);
   font-weight: var(--w-display);
   font-variation-settings: 'opsz' 96;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: var(--ls-d3);
   border-block-end: var(--border) solid var(--rule);
 }
+.mobile-menu__link[aria-current='page'] { color: var(--emerald); }
+
+/* ---- Contact block ------------------------------------------------------ */
+
+.menu-contact {
+  margin-block-start: var(--s6);
+  flex: none;
+}
+.menu-contact__label {
+  font-size: var(--t-label);
+  font-weight: var(--w-medium);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-block-end: var(--s3);
+}
+.menu-contact__list { display: grid; gap: var(--s2); }
+
+.menu-contact__item {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  min-height: 3.5rem;
+  padding: var(--s2) var(--s3);
+  border: var(--border) solid var(--rule);
+  background-color: var(--cloth);
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+.menu-contact__item:hover,
+.menu-contact__item:focus-visible { border-color: var(--emerald); }
+
+.menu-contact__icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  color: var(--emerald);
+}
+.menu-contact__icon svg { width: 20px; height: 20px; }
+
+.menu-contact__text { display: grid; gap: 1px; min-width: 0; }
+.menu-contact__what {
+  font-size: var(--t-label);
+  font-weight: var(--w-medium);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+}
+.menu-contact__detail {
+  font-size: var(--t-small);
+  color: var(--sage);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .mobile-menu__foot {
-  margin-block-start: auto;
-  padding-block-start: var(--s7);
+  margin-block-start: var(--s6);
+  padding-block-start: var(--s5);
+  border-block-start: var(--border) solid var(--rule);
   display: grid;
   gap: var(--s3);
+  flex: none;
 }
+.mobile-menu__fine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s4);
+  font-size: var(--t-small);
+  color: var(--sage);
+}
+.mobile-menu__fine a { text-decoration: underline; text-underline-offset: 0.3em;
+  text-decoration-color: var(--rule); min-height: var(--tap-min);
+  display: inline-flex; align-items: center; }
+.mobile-menu__fine a:hover { color: var(--ink); text-decoration-color: var(--ink); }
 
 /* ==========================================================================
    BUTTONS
@@ -624,6 +702,9 @@ select.field__control {
   display: grid;
   gap: var(--s1);
   padding: var(--s4) var(--s1) var(--s1);
+  /* Grid items default to min-width:auto, so a wide price row would push the
+     whole body past the card edge rather than shrink. */
+  min-width: 0;
 }
 
 .product-card__name {
@@ -642,28 +723,35 @@ select.field__control {
 /* Whole card is clickable; only the name is the accessible link */
 .product-card__link::after { content: ''; position: absolute; inset: 0; z-index: 1; }
 
+/* Colour above price, at every width. Side by side looks tidier on a wide
+   card, but the constraint is card width, not screen width: a 3-column tablet
+   grid leaves ~182px and "Ebonised iroko" + "From ₦340,000" needs ~199px, so
+   the price overhung the panel. Stacking is the only layout that holds at
+   every column count, and it keeps all cards exactly the same height. */
 .product-card__meta {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--s3);
+  display: grid;
+  justify-items: start;
+  gap: 2px;
   font-size: var(--t-small);
   color: var(--sage);
 }
 /* The colour is the flexible half and truncates; the price never wraps and
    never shrinks. Without this a long colour name wraps to a second line,
    which used to push one card's text out of step with the rest of its row. */
+.product-card__meta > * { min-width: 0; }
+
 .product-card__colour {
   min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 /* Made to order, so every figure is a starting point, never a checkout price */
 .product-card__price {
-  flex: none;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  color: var(--ink);
 }
 
 /* ==========================================================================
@@ -973,7 +1061,7 @@ select.field__control {
   .footer-brand { grid-column: span 2; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   .nav-list { display: none; }
   .menu-toggle { display: inline-flex; }
   .header-inner { grid-template-columns: auto 1fr auto; }

@@ -398,7 +398,7 @@ always carry a glyph as well as colour. All touch targets are at least
 
 ## Verified
 
-Driven with Playwright at 360 / 390 / 768 / 1440px — **175 assertions passing**:
+Driven with Playwright at 320 / 360 / 390 / 412 / 768 / 1024 / 1440px — **245 assertions passing**:
 
 - all 11 pages load with no console errors, one `h1`, alt text on every image
 - no cart markup survives anywhere
@@ -416,8 +416,13 @@ Driven with Playwright at 360 / 390 / 768 / 1440px — **175 assertions passing*
   links pass a hit test at their centre, closes, and reopens cleanly — checked
   on first visit, on a repeat visit with the intro skipped, and under reduced
   motion
-- product cards: names and prices share a baseline across every row at every
-  breakpoint, and colour never wraps to a second line
+- product cards: nothing escapes the card panel at 320–1440px, and names and
+  prices share a baseline across every row
+- mobile menu contact block: call, WhatsApp and email are all ≥44px targets,
+  inside the panel, and pass a hit test; the commission CTA stays reachable
+  after scrolling, down to a 320×640 screen
+- the six-item nav does not collide with the wordmark or search at ≥1024px,
+  and the hamburger takes over below that
 - no horizontal overflow at any breakpoint
 - reduced motion: nothing hidden, nothing pinned, no cursor, no intro, and the
   hero prompt still cycles readably

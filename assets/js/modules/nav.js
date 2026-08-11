@@ -111,7 +111,7 @@ function initMobileMenu() {
   links.forEach((link) => link.addEventListener('click', closeMenu));
 
   // Returning to desktop width must not strand the menu open
-  window.matchMedia('(min-width: 901px)').addEventListener('change', (event) => {
+  window.matchMedia("(min-width: 1024px)").addEventListener('change', (event) => {
     if (event.matches) closeMenu();
   });
 }
