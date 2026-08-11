@@ -1,0 +1,88 @@
+/* ==========================================================================
+   RESET — minimal, opinionated
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: auto; /* Lenis owns smooth scrolling; native stays off */
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul[role='list'],
+ol[role='list'] { list-style: none; }
+
+/* The HTML `hidden` attribute is display:none in the UA stylesheet, which any
+   author `display` rule silently overrides. Several components toggle
+   visibility via `hidden` (bespoke CTA, drawer footer, empty states) and set
+   their own display, so this has to win. */
+[hidden] { display: none !important; }
+
+html, body { height: 100%; }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  text-rendering: optimizeSpeed;
+  line-height: var(--lh-body);
+  /* Prevents any single wide child from scrolling the whole document */
+  overflow-x: clip;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+img, video { height: auto; }
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+a { color: inherit; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Remove default number spinners — quantity uses explicit buttons */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] { -moz-appearance: textfield; appearance: textfield; }
+
+/* Reduced motion: strip every transition and animation the browser can see.
+   The JavaScript layer additionally disables Lenis, parallax, split-text
+   reveals, the custom cursor and pinned horizontal scrolling. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

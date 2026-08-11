@@ -1,0 +1,154 @@
+/* ==========================================================================
+   DESIGN TOKENS — Dprince Couture
+   Single source of truth for colour, type, space, ratio and motion.
+   Nothing below this file should hard-code a colour or a size.
+   ========================================================================== */
+
+:root {
+  /* ---- Colour -----------------------------------------------------------
+     Sampled from the AW26 campaign photography. Contrast ratios against
+     --bone are noted; anything failing WCAG 2.2 AA for text is marked. */
+  --bone:        #F1EDE4;  /* page ground                                   */
+  --cloth:       #F5F2EB;  /* raised surfaces, drawers, cards               */
+  --ink:         #131313;  /* primary text, footer ground      16.4:1  AAA  */
+  --slate:       #5C5F61;  /* muted text, metadata, prices      5.0:1  AA   */
+  --rule:        #DDD6C8;  /* hairlines, dividers, field underlines         */
+  --clay:        #A4562F;  /* accent, links, focus ring         5.1:1  AA   */
+  --bronze:      #8B5E3C;  /* secondary accent, categories                  */
+  --gold:        #B39055;  /* DECORATIVE ONLY — 2.6:1, never text           */
+  --error:       #8C2F1E;  /* validation                        6.4:1  AA   */
+  --success:     #3F5F45;  /* confirmation                      6.0:1  AA   */
+
+  /* Product swatch greys — display only, never used for text */
+  --swatch-slate: #6B6E70;
+
+  /* Alpha helpers */
+  --ink-a08: rgba(19, 19, 19, 0.08);
+  --ink-a16: rgba(19, 19, 19, 0.16);
+  --ink-a60: rgba(19, 19, 19, 0.60);
+  --ink-a88: rgba(19, 19, 19, 0.88);
+  --bone-a12: rgba(241, 237, 228, 0.12);
+  --bone-a60: rgba(241, 237, 228, 0.60);
+
+  /* ---- Type families ----------------------------------------------------
+     Fraunces replaced Bodoni Moda late in the build: Bodoni Moda ships no
+     vietnamese subset, so U+1EA0–1EF1 is unavailable and Yoruba dot-below
+     vowels (ẹ U+1EB9, ọ U+1ECD) fell back mid-word. Fraunces covers them. */
+  --font-display: 'Fraunces', 'Playfair Display', 'Didot', 'Bodoni MT',
+                  Georgia, 'Times New Roman', serif;
+  --font-sans:    'Archivo', 'Helvetica Neue', Helvetica, Arial,
+                  'Segoe UI', system-ui, sans-serif;
+
+  /* Fraunces variable axes — optical size drives display contrast */
+  --opsz-display: 144;
+  --opsz-body: 14;
+
+  /* ---- Type scale (fluid) ----------------------------------------------- */
+  --t-d1:    clamp(3.25rem, 11vw, 10.5rem);      /*  52 → 168 px  hero      */
+  --t-d2:    clamp(2.5rem, 7.5vw, 7rem);         /*  40 → 112 px  statement */
+  --t-d3:    clamp(2rem, 4.5vw, 4rem);           /*  32 →  64 px  section   */
+  --t-d4:    clamp(1.5rem, 2.6vw, 2.25rem);      /*  24 →  36 px  sub       */
+  --t-lead:  clamp(1.0625rem, 1.3vw, 1.3125rem); /*  17 →  21 px            */
+  --t-body:  clamp(0.9375rem, 1vw, 1.0625rem);   /*  15 →  17 px            */
+  --t-small: 0.875rem;                           /*  14 px                  */
+  --t-label: 0.6875rem;                          /*  11 px  uppercase       */
+  --t-micro: 0.625rem;                           /*  10 px  uppercase       */
+
+  /* ---- Line heights ----------------------------------------------------- */
+  --lh-d1: 0.92;
+  --lh-d2: 0.98;
+  --lh-d3: 1.06;
+  --lh-d4: 1.15;
+  --lh-lead: 1.55;
+  --lh-body: 1.65;
+  --lh-tight: 1;
+
+  /* ---- Letter spacing --------------------------------------------------- */
+  --ls-d1: -0.035em;
+  --ls-d2: -0.03em;
+  --ls-d3: -0.02em;
+  --ls-d4: -0.015em;
+  --ls-body: 0;
+  --ls-label: 0.18em;
+  --ls-micro: 0.22em;
+
+  /* ---- Weights ---------------------------------------------------------- */
+  --w-display: 400;   /* high-contrast serifs read better light at scale */
+  --w-display-mid: 500;
+  --w-body: 400;
+  --w-medium: 500;
+  --w-semi: 600;
+
+  /* ---- Spacing — 8pt base ----------------------------------------------- */
+  --s1:  0.25rem;  /*   4 */
+  --s2:  0.5rem;   /*   8 */
+  --s3:  1rem;     /*  16 */
+  --s4:  1.5rem;   /*  24 */
+  --s5:  2rem;     /*  32 */
+  --s6:  2.5rem;   /*  40 */
+  --s7:  3rem;     /*  48 */
+  --s8:  4rem;     /*  64 */
+  --s9:  5rem;     /*  80 */
+  --s10: 6rem;     /*  96 */
+  --s11: 8rem;     /* 128 */
+  --s12: 10rem;    /* 160 */
+  --s13: 12.5rem;  /* 200 */
+  --s14: 16rem;    /* 256 */
+
+  /* Section rhythm */
+  --section-y: clamp(5rem, 12vw, 12.5rem);
+  --section-y-tight: clamp(3.5rem, 7vw, 7rem);
+
+  /* ---- Layout ----------------------------------------------------------- */
+  --max-wide: 97.5rem;   /* 1560 */
+  --max-standard: 80rem; /* 1280 */
+  --max-prose: 45rem;    /*  720 */
+  --gutter: 1.5rem;      /*   24 */
+  --margin-x: clamp(1.25rem, 5vw, 5rem);
+  --columns: 12;
+
+  /* ---- Borders & controls ----------------------------------------------- */
+  --border: 1px;
+  --border-thick: 2px;
+  --radius: 0;            /* the house does not do rounded corners */
+  --control-h: 3.5rem;    /* 56 */
+  --control-h-sm: 3.25rem;/* 52 */
+  --tap-min: 2.75rem;     /* 44 — minimum touch target */
+
+  /* ---- Aspect ratios ---------------------------------------------------- */
+  --ar-product: 3 / 4;
+  --ar-editorial: 4 / 5;
+  --ar-campaign: 9 / 16;
+  --ar-split: 3 / 2;
+  --ar-square: 1 / 1;
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --dur-fast: 0.25s;
+  --dur-base: 0.45s;
+  --dur-slow: 0.7s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---- Elevation --------------------------------------------------------
+     Deliberately minimal. Separation comes from whitespace and hairlines,
+     not shadow. The only shadow in the system is for overlay panels. */
+  --shadow-overlay: 0 0 60px rgba(19, 19, 19, 0.14);
+
+  /* ---- Z-index ladder --------------------------------------------------- */
+  --z-base: 1;
+  --z-sticky: 40;
+  --z-header: 50;
+  --z-drawer: 70;
+  --z-menu: 80;
+  --z-cursor: 90;
+  --z-transition: 95;
+  --z-intro: 100;
+}
+
+@media (min-width: 768px) {
+  :root { --gutter: 1.5rem; }
+}
+
+@media (max-width: 767px) {
+  :root { --gutter: 1rem; }
+}

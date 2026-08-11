@@ -1,0 +1,162 @@
+/* ==========================================================================
+   LAYOUT — containers, grid, section rhythm
+   ========================================================================== */
+
+/* ---- Containers --------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--max-standard);
+  margin-inline: auto;
+  padding-inline: var(--margin-x);
+}
+.container--wide  { max-width: var(--max-wide); }
+.container--prose { max-width: var(--max-prose); }
+.container--flush { padding-inline: 0; max-width: none; }
+
+/* ---- Section rhythm ----------------------------------------------------- */
+
+.section { padding-block: var(--section-y); }
+.section--tight { padding-block: var(--section-y-tight); }
+.section--top   { padding-block-start: var(--section-y); padding-block-end: 0; }
+.section--bottom{ padding-block-start: 0; padding-block-end: var(--section-y); }
+.section--ink   { background-color: var(--ink); color: var(--bone); }
+.section--ink .lead,
+.section--ink .muted { color: var(--bone-a60); }
+.section--ink .eyebrow { color: var(--bone-a60); }
+.section--ink .eyebrow::before { background-color: var(--bone-a12); }
+
+/* ---- 12 column grid ----------------------------------------------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  gap: var(--gutter);
+}
+
+/* Column span helpers — desktop first, collapsed at breakpoints below */
+.col-1  { grid-column: span 1; }
+.col-2  { grid-column: span 2; }
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-9  { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
+
+.start-2  { grid-column-start: 2; }
+.start-3  { grid-column-start: 3; }
+.start-4  { grid-column-start: 4; }
+.start-6  { grid-column-start: 6; }
+.start-7  { grid-column-start: 7; }
+.start-8  { grid-column-start: 8; }
+
+/* ---- Product grids ------------------------------------------------------ */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s7) var(--gutter);
+}
+.product-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s9) var(--s5); }
+.product-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s8) var(--s5); }
+
+/* ---- Editorial split ---------------------------------------------------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: clamp(var(--s5), 5vw, var(--s10));
+  align-items: center;
+}
+.split--reverse { grid-template-columns: 5fr 7fr; }
+.split--even { grid-template-columns: 1fr 1fr; }
+
+/* ---- Stacks & clusters -------------------------------------------------- */
+
+.stack > * + * { margin-block-start: var(--flow, var(--s4)); }
+.stack--xs { --flow: var(--s2); }
+.stack--sm { --flow: var(--s3); }
+.stack--lg { --flow: var(--s6); }
+.stack--xl { --flow: var(--s8); }
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3);
+}
+.cluster--between { justify-content: space-between; }
+.cluster--end { justify-content: flex-end; }
+
+.center-x { margin-inline: auto; text-align: center; }
+
+/* ---- Section heading pattern -------------------------------------------- */
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s6);
+  margin-block-end: var(--s8);
+  padding-block-end: var(--s5);
+  border-block-end: var(--border) solid var(--rule);
+}
+.section-head__text { max-width: 40ch; }
+.section-head__text > * + * { margin-block-start: var(--s4); }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+/* Laptop and below — 12 col holds, product grid tightens */
+@media (max-width: 1279px) {
+  .product-grid { gap: var(--s6) var(--gutter); }
+}
+
+/* Tablet landscape — 8 column behaviour */
+@media (max-width: 1023px) {
+  :root { --columns: 8; }
+
+  .col-3 { grid-column: span 4; }
+  .col-4 { grid-column: span 4; }
+  .col-5 { grid-column: span 8; }
+  .col-6 { grid-column: span 8; }
+  .col-7 { grid-column: span 8; }
+  .col-8, .col-9, .col-10, .col-11, .col-12 { grid-column: span 8; }
+  .start-2, .start-3, .start-4, .start-6, .start-7, .start-8 { grid-column-start: auto; }
+
+  .product-grid    { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .product-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .split, .split--reverse, .split--even { grid-template-columns: 1fr; }
+
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s4);
+  }
+}
+
+/* Tablet portrait and below — 4 column behaviour */
+@media (max-width: 767px) {
+  :root { --columns: 4; }
+
+  .col-1, .col-2 { grid-column: span 2; }
+  .col-3, .col-4, .col-5, .col-6,
+  .col-7, .col-8, .col-9, .col-10,
+  .col-11, .col-12 { grid-column: span 4; }
+
+  .product-grid,
+  .product-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s6) var(--gutter); }
+  .product-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Small phone */
+@media (max-width: 479px) {
+  .product-grid--3 { grid-template-columns: 1fr; }
+}

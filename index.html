@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dprince Couture — Ceremonial Tailoring, Lagos &amp; Abuja</title>
+<meta name="description" content="Ceremonial agbada, kaftan and senator tailoring, hand-cut in Lagos and Abuja. Made to be inherited.">
+<meta name="theme-color" content="#F1EDE4">
+<meta property="og:title" content="Dprince Couture — Ceremonial Tailoring, Lagos &amp; Abuja">
+<meta property="og:description" content="Ceremonial agbada, kaftan and senator tailoring, hand-cut in Lagos and Abuja. Made to be inherited.">
+<meta property="og:type" content="website">
+
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/posters/hero-campaign.jpg" as="image">
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+
+<script>
+  /* Pre-animation states are applied only when animation will actually run.
+     Without JS, or with reduced motion requested, nothing is ever hidden. */
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced) document.documentElement.classList.add('has-anim');
+  })();
+</script>
+</head>
+<body data-page="index">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="intro" data-intro aria-hidden="true">
+  <p class="intro__word"><span class="intro__char">D</span><span class="intro__char">P</span><span class="intro__char">R</span><span class="intro__char">I</span><span class="intro__char">N</span><span class="intro__char">C</span><span class="intro__char">E</span></p>
+  <span class="intro__rule"></span>
+</div>
+
+<div class="announcement">
+  <p>Complimentary nationwide delivery on orders above &#8358;500,000</p>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <nav class="header-nav" aria-label="Primary">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="shop.html">Shop</a></li>
+        <li><a class="nav-link" href="lookbook.html">Lookbook</a></li>
+        <li><a class="nav-link" href="journal.html">Journal</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="booking.html">Booking</a></li>
+      </ul>
+      <button type="button" class="menu-toggle" data-menu-toggle
+              aria-expanded="false" aria-controls="mobile-menu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        <span>Menu</span>
+      </button>
+    </nav>
+
+    <a class="wordmark" href="index.html" aria-label="Dprince Couture, home">DPRINCE <span>COUTURE</span></a>
+
+    <div class="header-utils">
+      <button type="button" class="bag-button" data-cart-open aria-haspopup="dialog">
+        <span aria-hidden="true">Bag</span>
+        <span class="bag-count" data-bag-count aria-hidden="true">0</span>
+        <span class="visually-hidden" data-bag-label>0 items in bag. Open shopping bag.</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
+  <div class="mobile-menu__head">
+    <span class="wordmark">DPRINCE <span>COUTURE</span></span>
+    <button type="button" class="icon-btn" data-menu-close aria-label="Close menu">&times;</button>
+  </div>
+  <nav aria-label="Mobile">
+    <ul class="mobile-menu__list">
+      <li><a class="mobile-menu__link" href="shop.html">Shop</a></li>
+      <li><a class="mobile-menu__link" href="lookbook.html">Lookbook</a></li>
+      <li><a class="mobile-menu__link" href="journal.html">Journal</a></li>
+      <li><a class="mobile-menu__link" href="about.html">About</a></li>
+      <li><a class="mobile-menu__link" href="booking.html">Booking</a></li>
+    </ul>
+  </nav>
+  <div class="mobile-menu__foot">
+    <a class="link small" href="contact.html">Contact the atelier</a>
+    <a class="link small" href="client-services.html">Client services</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="container container--wide">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow">Autumn Winter 2026</p>
+          <h1 class="hero__title" id="hero-heading" data-split="hero">The Quiet Season</h1>
+          <p class="lead hero__support">
+            Ceremonial dress cut for the room, not the photograph. Hand-loomed cloth,
+            eleven days of embroidery, and a shoulder engineered to forget it is there.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="shop.html" data-cursor="Enter">Discover the collection</a>
+          </div>
+          <p class="hero__scroll">Scroll</p>
+        </div>
+
+        <div class="hero__media">
+          <video src="assets/video/hero-campaign.mp4"
+                 poster="assets/img/posters/hero-campaign.jpg"
+                 autoplay muted loop playsinline preload="metadata"
+                 aria-label="Campaign film: a model in a textured kaftan and coral bead strands turning away from camera."></video>
+        </div>
+      </div>
+      <p class="hero__caption">AW26 Campaign &middot; Photographed in Lagos</p>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED COLLECTION ==================== -->
+  <section class="section" aria-labelledby="featured-heading">
+    <div class="container">
+      <div class="grid">
+        <div class="col-5 stack stack--lg">
+          <p class="eyebrow">The collection</p>
+          <h2 class="d3" id="featured-heading" data-split>Nine pieces, cut once</h2>
+        </div>
+        <div class="col-6 start-7 stack">
+          <p class="lead">
+            AW26 is deliberately small. Nine garments and three accessories, made in
+            quantities set by how much embroidery one pair of hands can finish in a season.
+          </p>
+          <p class="body-text muted">
+            The house makes fourteen ceremonial agbada a year. That ceiling is not a
+            marketing position — it is the honest capacity of the atelier, and it decides
+            everything else about how the collection is built.
+          </p>
+          <a class="btn-text" href="about.html">Read about the house</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= NEW ARRIVALS ======================= -->
+  <section class="section section--top" aria-labelledby="arrivals-heading">
+    <div class="container container--wide">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Just arrived</p>
+          <h2 class="d3" id="arrivals-heading" data-split>New this season</h2>
+        </div>
+        <a class="btn-text" href="shop.html">View all pieces</a>
+      </div>
+      <div class="product-grid" data-new-arrivals></div>
+    </div>
+  </section>
+
+  <!-- ======================== STATEMENT ========================= -->
+  <section class="section" aria-labelledby="statement-heading">
+    <div class="container">
+      <h2 class="statement" id="statement-heading" data-split-words>
+        A garment worn twelve times in a decade is not clothing. It is an heirloom in waiting.
+      </h2>
+      <p class="statement-attrib">Founder&rsquo;s note, house archive</p>
+    </div>
+  </section>
+
+  <!-- ===================== SPLIT CAMPAIGN ======================= -->
+  <section class="section" data-campaign-split aria-labelledby="campaign-heading">
+    <div class="container container--wide">
+      <div class="split campaign-split">
+        <div class="campaign-split__media">
+          <video src="assets/video/campaign-agbada.mp4"
+                 poster="assets/img/posters/campaign-agbada.jpg"
+                 muted loop playsinline preload="none" data-lazy-play
+                 aria-label="Campaign film: ceremonial agbada photographed walking through a stone colonnade."></video>
+        </div>
+        <div class="campaign-split__body">
+          <p class="eyebrow">The ceremonial line</p>
+          <h2 class="d3" id="campaign-heading" data-split>Cut for the moment everyone is watching</h2>
+          <p class="body-text muted">
+            A ceremonial agbada has no fastening to hold it and no waist to sit on —
+            three metres of cloth hanging from a line forty-five centimetres wide.
+            Whatever that shoulder does, the hem repeats, amplified.
+          </p>
+          <p class="body-text muted">
+            The house solves it with a bias-cut linen strip eased into the seam by a
+            millimetre and a half. It is the entire difference between grandeur and costume.
+          </p>
+          <a class="btn btn--secondary" href="shop.html?category=Agbada">Explore ceremonial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<section class="section lookbook" data-lookbook aria-labelledby="lookbook-heading">
+  <div class="container container--wide">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow">Autumn Winter 2026</p>
+        <h2 class="d3" id="lookbook-heading" data-split>The Quiet Season</h2>
+      </div>
+      <a class="btn-text" href="lookbook.html">View the full lookbook</a>
+    </div>
+  </div>
+
+  <div class="lookbook__viewport">
+    <div class="lookbook__track">
+
+        <article class="look">
+          <div class="look__media"><video class="look__media-el look__media--inner" src="assets/video/look-01.mp4" poster="assets/img/posters/look-01.jpg" muted loop playsinline preload="none" data-lazy-play aria-label="Model turning in an embroidered obsidian kaftan, photographed in low raking light."></video></div>
+          <div class="look__caption">
+            <span>Ìtàn</span>
+            <span class="look__index">01 / 06</span>
+          </div>
+          <p class="small muted">Embroidered kaftan, obsidian</p>
+        </article>
+
+        <article class="look">
+          <div class="look__media"><img class="look__media-el look__media--inner" src="assets/img/editorial/campaign-agbada-01.webp" alt="Model wearing the Ààrẹ ceremonial agbada in chalk white with a carved opa staff." width="900" height="1600" loading="lazy" decoding="async"></div>
+          <div class="look__caption">
+            <span>Ààrẹ</span>
+            <span class="look__index">02 / 06</span>
+          </div>
+          <p class="small muted">Ceremonial agbada, chalk white</p>
+        </article>
+
+        <article class="look">
+          <div class="look__media"><video class="look__media-el look__media--inner" src="assets/video/look-03.mp4" poster="assets/img/posters/look-03.jpg" muted loop playsinline preload="none" data-lazy-play aria-label="Model in an obsidian satin kaftan moving through a shaded colonnade."></video></div>
+          <div class="look__caption">
+            <span>Òjìjì</span>
+            <span class="look__index">03 / 06</span>
+          </div>
+          <p class="small muted">Satin kaftan, obsidian</p>
+        </article>
+
+        <article class="look">
+          <div class="look__media"><img class="look__media-el look__media--inner" src="assets/img/editorial/campaign-agbada-02.webp" alt="Full-length view of the ceremonial agbada showing the draped shoulder and floor-length sokoto." width="900" height="1600" loading="lazy" decoding="async"></div>
+          <div class="look__caption">
+            <span>Ọba</span>
+            <span class="look__index">04 / 06</span>
+          </div>
+          <p class="small muted">Ceremonial agbada, full sweep</p>
+        </article>
+
+        <article class="look">
+          <div class="look__media"><video class="look__media-el look__media--inner" src="assets/video/look-05.mp4" poster="assets/img/posters/look-05.jpg" muted loop playsinline preload="none" data-lazy-play aria-label="Model in a charcoal two-piece senator walking away from camera."></video></div>
+          <div class="look__caption">
+            <span>Ààyè</span>
+            <span class="look__index">05 / 06</span>
+          </div>
+          <p class="small muted">Two-piece senator, charcoal</p>
+        </article>
+
+        <article class="look">
+          <div class="look__media"><img class="look__media-el look__media--inner" src="assets/img/journal/campaign-agbada.webp" alt="Ceremonial agbada in hand-loomed aso-oke photographed against stone columns." width="900" height="1600" loading="lazy" decoding="async"></div>
+          <div class="look__caption">
+            <span>Ìsẹ̀yìn</span>
+            <span class="look__index">06 / 06</span>
+          </div>
+          <p class="small muted">Hand-loomed aso-oke</p>
+        </article>
+
+    </div>
+  </div>
+
+  <div class="lookbook__progress" role="presentation">
+    <div class="lookbook__progress-bar"></div>
+  </div>
+  <p class="lookbook__hint">Scroll to advance</p>
+</section>
+
+
+  <!-- ====================== CRAFTSMANSHIP ======================= -->
+  <section class="section craft" aria-labelledby="craft-heading">
+    <div class="container container--wide">
+      <div class="craft__inner">
+        <div class="craft__media">
+          <video data-craft-video src="assets/video/atelier-craft.mp4"
+                 poster="assets/img/posters/atelier-craft.jpg"
+                 muted playsinline preload="auto"
+                 aria-label="Atelier film: chalk marking, pattern templates and cutting on dark cloth."></video>
+        </div>
+        <div class="craft__body">
+          <p class="eyebrow">In the atelier</p>
+          <h2 class="d3" id="craft-heading" data-split>Eleven days of thread</h2>
+          <p class="body-text muted">
+            The embroidery panel on a ceremonial agbada is worked by one pair of hands,
+            never two. Two embroiderers produce two tensions, and on flat silver thread
+            against a woven ground that difference reads as a ripple across the finished
+            panel. You would not be able to name what was wrong with it. You would simply
+            find it cheap.
+          </p>
+
+          <div class="craft__steps">
+            <div class="craft__step">
+              <span class="craft__num" aria-hidden="true">01</span>
+              <div>
+                <h3>Cloth</h3>
+                <p>Hand-loomed in Ìsẹ̀yìn on a narrow loom, in strips a hand&rsquo;s width across, then joined.</p>
+              </div>
+            </div>
+            <div class="craft__step">
+              <span class="craft__num" aria-hidden="true">02</span>
+              <div>
+                <h3>Pattern</h3>
+                <p>Drafted to the client, chalked by hand, and filed under their name for every future commission.</p>
+              </div>
+            </div>
+            <div class="craft__step">
+              <span class="craft__num" aria-hidden="true">03</span>
+              <div>
+                <h3>Embroidery</h3>
+                <p>Silver thread on the ground cloth rather than an applied panel, so it will not lift in twenty years.</p>
+              </div>
+            </div>
+            <div class="craft__step">
+              <span class="craft__num" aria-hidden="true">04</span>
+              <div>
+                <h3>Finish</h3>
+                <p>Seams bound, never overlocked — so a tailor who has never seen the garment can let it out.</p>
+              </div>
+            </div>
+          </div>
+
+          <a class="btn-text" href="journal.html">Read the atelier journal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SELECTED PRODUCTS ===================== -->
+  <section class="section" aria-labelledby="selected-heading">
+    <div class="container container--wide">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Selected</p>
+          <h2 class="d3" id="selected-heading" data-split>Pieces we would start with</h2>
+        </div>
+        <a class="btn-text" href="shop.html">View all pieces</a>
+      </div>
+      <div class="product-grid product-grid--3" data-selected-products></div>
+    </div>
+  </section>
+
+  <!-- ====================== JOURNAL PREVIEW ===================== -->
+  <section class="section section--top" aria-labelledby="journal-heading">
+    <div class="container container--wide">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Journal</p>
+          <h2 class="d3" id="journal-heading" data-split>Notes from the bench</h2>
+        </div>
+        <a class="btn-text" href="journal.html">All stories</a>
+      </div>
+      <div class="journal-grid" data-journal-preview></div>
+    </div>
+  </section>
+
+
+<section class="section" aria-labelledby="newsletter-heading">
+  <div class="container">
+    <div class="grid">
+      <div class="col-6 start-4 center-x stack stack--lg">
+        <p class="eyebrow eyebrow--plain">The house list</p>
+        <h2 class="d3" id="newsletter-heading" data-split>Collection releases, atelier notes, nothing else.</h2>
+        <form class="newsletter-form center-x" data-newsletter novalidate>
+          <div class="field">
+            <label class="field__label" for="newsletter-email">Email address</label>
+            <input class="field__control" type="email" id="newsletter-email" name="email"
+                   autocomplete="email" placeholder="name@example.com"
+                   data-validate="required|email" required>
+            <p class="field__message" data-form-status role="status" aria-live="polite"></p>
+          </div>
+          <button class="btn btn--primary" type="submit">Subscribe</button>
+        </form>
+        <p class="small muted">We write rarely. Unsubscribe in one click.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container container--wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="wordmark">DPRINCE <span>COUTURE</span></span>
+        <p class="small">Ceremonial tailoring, made to be inherited. Cut in Lagos and Abuja since 2014.</p>
+        <a class="btn-text" href="booking.html">Book an appointment</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="shop.html">All pieces</a></li>
+          <li><a href="shop.html?category=Agbada">Agbada</a></li>
+          <li><a href="shop.html?category=Kaftan">Kaftan</a></li>
+          <li><a href="shop.html?category=Senator">Senator</a></li>
+          <li><a href="shop.html?category=Accessories">Accessories</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>The House</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lookbook.html">Lookbook</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="booking.html">Book an appointment</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Client Services</h3>
+        <ul>
+          <li><a href="client-services.html#shipping">Shipping</a></li>
+          <li><a href="client-services.html#returns">Returns</a></li>
+          <li><a href="client-services.html#sizing">Size guide</a></li>
+          <li><a href="client-services.html#care">Garment care</a></li>
+          <li><a href="client-services.html#payment">Payment</a></li>
+          <li><a href="client-services.html#faq">Frequently asked</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="contact.html">Enquiries</a></li>
+          <li><a href="contact.html#lagos">Lagos atelier</a></li>
+          <li><a href="contact.html#abuja">Abuja atelier</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Dprince Couture. All rights reserved.</p>
+      <p>Lagos &middot; Abuja</p>
+    </div>
+  </div>
+</footer>
+
+<div class="drawer-backdrop" data-cart-backdrop></div>
+
+<aside class="drawer" data-cart-drawer role="dialog" aria-modal="true"
+       aria-labelledby="drawer-heading" aria-hidden="true">
+  <div class="drawer__head">
+    <h2 class="d4" id="drawer-heading">Your bag</h2>
+    <button type="button" class="icon-btn" data-cart-close aria-label="Close bag">&times;</button>
+  </div>
+  <div class="drawer__body">
+    <ul class="cart-lines" data-cart-lines role="list"></ul>
+    <div data-cart-empty></div>
+  </div>
+  <div class="drawer__foot" data-cart-has-items hidden>
+    <div class="cart-totals" data-cart-totals></div>
+    <a class="btn btn--primary btn--block" href="cart.html">View bag &amp; checkout</a>
+    <button type="button" class="btn btn--ghost btn--block" data-cart-close>Continue shopping</button>
+  </div>
+</aside>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product — Dprince Couture</title>
+<meta name="description" content="Ceremonial tailoring by Dprince Couture, hand-cut in Lagos and Abuja.">
+<meta name="theme-color" content="#F1EDE4">
+<meta property="og:title" content="Product — Dprince Couture">
+<meta property="og:description" content="Ceremonial tailoring by Dprince Couture, hand-cut in Lagos and Abuja.">
+<meta property="og:type" content="website">
+
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+
+<script>
+  /* Pre-animation states are applied only when animation will actually run.
+     Without JS, or with reduced motion requested, nothing is ever hidden. */
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced) document.documentElement.classList.add('has-anim');
+  })();
+</script>
+</head>
+<body data-page="product">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announcement">
+  <p>Complimentary nationwide delivery on orders above &#8358;500,000</p>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <nav class="header-nav" aria-label="Primary">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="shop.html">Shop</a></li>
+        <li><a class="nav-link" href="lookbook.html">Lookbook</a></li>
+        <li><a class="nav-link" href="journal.html">Journal</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="booking.html">Booking</a></li>
+      </ul>
+      <button type="button" class="menu-toggle" data-menu-toggle
+              aria-expanded="false" aria-controls="mobile-menu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        <span>Menu</span>
+      </button>
+    </nav>
+
+    <a class="wordmark" href="index.html" aria-label="Dprince Couture, home">DPRINCE <span>COUTURE</span></a>
+
+    <div class="header-utils">
+      <button type="button" class="bag-button" data-cart-open aria-haspopup="dialog">
+        <span aria-hidden="true">Bag</span>
+        <span class="bag-count" data-bag-count aria-hidden="true">0</span>
+        <span class="visually-hidden" data-bag-label>0 items in bag. Open shopping bag.</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
+  <div class="mobile-menu__head">
+    <span class="wordmark">DPRINCE <span>COUTURE</span></span>
+    <button type="button" class="icon-btn" data-menu-close aria-label="Close menu">&times;</button>
+  </div>
+  <nav aria-label="Mobile">
+    <ul class="mobile-menu__list">
+      <li><a class="mobile-menu__link" href="shop.html">Shop</a></li>
+      <li><a class="mobile-menu__link" href="lookbook.html">Lookbook</a></li>
+      <li><a class="mobile-menu__link" href="journal.html">Journal</a></li>
+      <li><a class="mobile-menu__link" href="about.html">About</a></li>
+      <li><a class="mobile-menu__link" href="booking.html">Booking</a></li>
+    </ul>
+  </nav>
+  <div class="mobile-menu__foot">
+    <a class="link small" href="contact.html">Contact the atelier</a>
+    <a class="link small" href="client-services.html">Client services</a>
+  </div>
+</div>
+
+<main id="main" data-product-page>
+  <div class="container container--wide">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html" data-breadcrumb-category>Shop</a></li>
+        <li><span aria-current="page" data-breadcrumb-name>Piece</span></li>
+      </ol>
+    </nav>
+
+    <div class="product-layout">
+      <div class="gallery">
+        <div class="gallery__main" data-gallery-main></div>
+        <div class="gallery__thumbs" data-gallery-thumbs role="group" aria-label="Product images"></div>
+      </div>
+
+      <div class="product-info">
+        <div class="product-info__head">
+          <h1 class="product-info__title" data-product-name>Piece</h1>
+          <p class="product-info__price" data-product-price></p>
+          <p class="product-info__colour" data-product-colour></p>
+          <p class="body-text muted" data-product-summary></p>
+        </div>
+
+        <div>
+          <div class="size-row">
+            <span class="field__label" id="size-label">Size</span>
+            <a class="size-guide-link" href="client-services.html#sizing">Size guide</a>
+          </div>
+          <div class="radio-cards" data-size-options role="radiogroup" aria-labelledby="size-label"></div>
+          <p class="field__message" data-size-message role="status" aria-live="polite"></p>
+          <p class="bespoke-note" data-bespoke-note>
+            Bespoke pieces are cut to your own measurements over ten to fourteen weeks.
+            They are commissioned by appointment rather than added to the bag.
+          </p>
+        </div>
+
+        <div>
+          <span class="field__label" id="qty-label">Quantity</span>
+          <div class="qty" data-quantity role="group" aria-labelledby="qty-label">
+            <button type="button" class="qty__btn" data-qty-down aria-label="Decrease quantity">&minus;</button>
+            <span class="qty__value" data-qty-value>1</span>
+            <button type="button" class="qty__btn" data-qty-up aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+
+        <div class="product-actions">
+          <button type="button" class="btn btn--primary btn--block" data-add-to-bag>Add to bag</button>
+          <a class="btn btn--primary btn--block" href="booking.html" data-book-instead hidden>Book a bespoke appointment</a>
+          <p class="delivery-note">
+            Nationwide delivery in 3&ndash;5 working days, complimentary above &#8358;500,000.
+            Ready-to-wear may be returned within 14 days.
+          </p>
+        </div>
+
+        <div class="accordion" data-accordion></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section--top" aria-labelledby="related-heading">
+    <div class="container container--wide">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">Complete the look</p>
+          <h2 class="d3" id="related-heading">Worn with</h2>
+        </div>
+      </div>
+      <div class="product-grid" data-related></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container container--wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="wordmark">DPRINCE <span>COUTURE</span></span>
+        <p class="small">Ceremonial tailoring, made to be inherited. Cut in Lagos and Abuja since 2014.</p>
+        <a class="btn-text" href="booking.html">Book an appointment</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="shop.html">All pieces</a></li>
+          <li><a href="shop.html?category=Agbada">Agbada</a></li>
+          <li><a href="shop.html?category=Kaftan">Kaftan</a></li>
+          <li><a href="shop.html?category=Senator">Senator</a></li>
+          <li><a href="shop.html?category=Accessories">Accessories</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>The House</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lookbook.html">Lookbook</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="booking.html">Book an appointment</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Client Services</h3>
+        <ul>
+          <li><a href="client-services.html#shipping">Shipping</a></li>
+          <li><a href="client-services.html#returns">Returns</a></li>
+          <li><a href="client-services.html#sizing">Size guide</a></li>
+          <li><a href="client-services.html#care">Garment care</a></li>
+          <li><a href="client-services.html#payment">Payment</a></li>
+          <li><a href="client-services.html#faq">Frequently asked</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="contact.html">Enquiries</a></li>
+          <li><a href="contact.html#lagos">Lagos atelier</a></li>
+          <li><a href="contact.html#abuja">Abuja atelier</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Dprince Couture. All rights reserved.</p>
+      <p>Lagos &middot; Abuja</p>
+    </div>
+  </div>
+</footer>
+
+<div class="drawer-backdrop" data-cart-backdrop></div>
+
+<aside class="drawer" data-cart-drawer role="dialog" aria-modal="true"
+       aria-labelledby="drawer-heading" aria-hidden="true">
+  <div class="drawer__head">
+    <h2 class="d4" id="drawer-heading">Your bag</h2>
+    <button type="button" class="icon-btn" data-cart-close aria-label="Close bag">&times;</button>
+  </div>
+  <div class="drawer__body">
+    <ul class="cart-lines" data-cart-lines role="list"></ul>
+    <div data-cart-empty></div>
+  </div>
+  <div class="drawer__foot" data-cart-has-items hidden>
+    <div class="cart-totals" data-cart-totals></div>
+    <a class="btn btn--primary btn--block" href="cart.html">View bag &amp; checkout</a>
+    <button type="button" class="btn btn--ghost btn--block" data-cart-close>Continue shopping</button>
+  </div>
+</aside>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

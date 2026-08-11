@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Bag — Dprince Couture</title>
+<meta name="description" content="Review the pieces in your bag.">
+<meta name="theme-color" content="#F1EDE4">
+<meta property="og:title" content="Your Bag — Dprince Couture">
+<meta property="og:description" content="Review the pieces in your bag.">
+<meta property="og:type" content="website">
+
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+
+<script>
+  /* Pre-animation states are applied only when animation will actually run.
+     Without JS, or with reduced motion requested, nothing is ever hidden. */
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced) document.documentElement.classList.add('has-anim');
+  })();
+</script>
+</head>
+<body data-page="cart">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announcement">
+  <p>Complimentary nationwide delivery on orders above &#8358;500,000</p>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <nav class="header-nav" aria-label="Primary">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="shop.html">Shop</a></li>
+        <li><a class="nav-link" href="lookbook.html">Lookbook</a></li>
+        <li><a class="nav-link" href="journal.html">Journal</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="booking.html">Booking</a></li>
+      </ul>
+      <button type="button" class="menu-toggle" data-menu-toggle
+              aria-expanded="false" aria-controls="mobile-menu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        <span>Menu</span>
+      </button>
+    </nav>
+
+    <a class="wordmark" href="index.html" aria-label="Dprince Couture, home">DPRINCE <span>COUTURE</span></a>
+
+    <div class="header-utils">
+      <button type="button" class="bag-button" data-cart-open aria-haspopup="dialog">
+        <span aria-hidden="true">Bag</span>
+        <span class="bag-count" data-bag-count aria-hidden="true">0</span>
+        <span class="visually-hidden" data-bag-label>0 items in bag. Open shopping bag.</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
+  <div class="mobile-menu__head">
+    <span class="wordmark">DPRINCE <span>COUTURE</span></span>
+    <button type="button" class="icon-btn" data-menu-close aria-label="Close menu">&times;</button>
+  </div>
+  <nav aria-label="Mobile">
+    <ul class="mobile-menu__list">
+      <li><a class="mobile-menu__link" href="shop.html">Shop</a></li>
+      <li><a class="mobile-menu__link" href="lookbook.html">Lookbook</a></li>
+      <li><a class="mobile-menu__link" href="journal.html">Journal</a></li>
+      <li><a class="mobile-menu__link" href="about.html">About</a></li>
+      <li><a class="mobile-menu__link" href="booking.html">Booking</a></li>
+    </ul>
+  </nav>
+  <div class="mobile-menu__foot">
+    <a class="link small" href="contact.html">Contact the atelier</a>
+    <a class="link small" href="client-services.html">Client services</a>
+  </div>
+</div>
+
+<main id="main">
+  <section class="masthead">
+    <div class="container container--wide">
+      <div class="masthead__inner">
+        <p class="eyebrow">Shopping bag</p>
+        <h1 class="masthead__title">Your bag</h1>
+      </div>
+    </div>
+  </section>
+
+  <div class="container container--wide">
+    <div class="cart-layout">
+      <div>
+        <ul class="cart-lines" data-cart-lines role="list"></ul>
+        <div data-cart-empty></div>
+      </div>
+
+      <aside class="cart-summary" data-cart-has-items hidden aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Summary</h2>
+        <div class="cart-totals" data-cart-totals></div>
+
+        <p class="checkout-notice">
+          <strong>This is a frontend demonstration.</strong> No payment processor is
+          connected and no order will be placed. Nothing is charged, and no card
+          details are collected anywhere on this site. To commission a piece, book an
+          appointment or write to the atelier.
+        </p>
+
+        <a class="btn btn--primary btn--block" href="booking.html">Book an appointment</a>
+        <a class="btn btn--secondary btn--block" href="contact.html">Contact the atelier</a>
+        <a class="btn-text" href="shop.html">Continue shopping</a>
+      </aside>
+    </div>
+  </div>
+
+  <div class="section"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="container container--wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="wordmark">DPRINCE <span>COUTURE</span></span>
+        <p class="small">Ceremonial tailoring, made to be inherited. Cut in Lagos and Abuja since 2014.</p>
+        <a class="btn-text" href="booking.html">Book an appointment</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="shop.html">All pieces</a></li>
+          <li><a href="shop.html?category=Agbada">Agbada</a></li>
+          <li><a href="shop.html?category=Kaftan">Kaftan</a></li>
+          <li><a href="shop.html?category=Senator">Senator</a></li>
+          <li><a href="shop.html?category=Accessories">Accessories</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>The House</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lookbook.html">Lookbook</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="booking.html">Book an appointment</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Client Services</h3>
+        <ul>
+          <li><a href="client-services.html#shipping">Shipping</a></li>
+          <li><a href="client-services.html#returns">Returns</a></li>
+          <li><a href="client-services.html#sizing">Size guide</a></li>
+          <li><a href="client-services.html#care">Garment care</a></li>
+          <li><a href="client-services.html#payment">Payment</a></li>
+          <li><a href="client-services.html#faq">Frequently asked</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="contact.html">Enquiries</a></li>
+          <li><a href="contact.html#lagos">Lagos atelier</a></li>
+          <li><a href="contact.html#abuja">Abuja atelier</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Dprince Couture. All rights reserved.</p>
+      <p>Lagos &middot; Abuja</p>
+    </div>
+  </div>
+</footer>
+
+<div class="drawer-backdrop" data-cart-backdrop></div>
+
+<aside class="drawer" data-cart-drawer role="dialog" aria-modal="true"
+       aria-labelledby="drawer-heading" aria-hidden="true">
+  <div class="drawer__head">
+    <h2 class="d4" id="drawer-heading">Your bag</h2>
+    <button type="button" class="icon-btn" data-cart-close aria-label="Close bag">&times;</button>
+  </div>
+  <div class="drawer__body">
+    <ul class="cart-lines" data-cart-lines role="list"></ul>
+    <div data-cart-empty></div>
+  </div>
+  <div class="drawer__foot" data-cart-has-items hidden>
+    <div class="cart-totals" data-cart-totals></div>
+    <a class="btn btn--primary btn--block" href="cart.html">View bag &amp; checkout</a>
+    <button type="button" class="btn btn--ghost btn--block" data-cart-close>Continue shopping</button>
+  </div>
+</aside>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

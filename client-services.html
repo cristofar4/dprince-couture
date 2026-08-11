@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Services — Dprince Couture</title>
+<meta name="description" content="Shipping, returns, size guide, garment care, payment and frequently asked questions.">
+<meta name="theme-color" content="#F1EDE4">
+<meta property="og:title" content="Client Services — Dprince Couture">
+<meta property="og:description" content="Shipping, returns, size guide, garment care, payment and frequently asked questions.">
+<meta property="og:type" content="website">
+
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+
+<script>
+  /* Pre-animation states are applied only when animation will actually run.
+     Without JS, or with reduced motion requested, nothing is ever hidden. */
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced) document.documentElement.classList.add('has-anim');
+  })();
+</script>
+</head>
+<body data-page="client-services">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announcement">
+  <p>Complimentary nationwide delivery on orders above &#8358;500,000</p>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <nav class="header-nav" aria-label="Primary">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="shop.html">Shop</a></li>
+        <li><a class="nav-link" href="lookbook.html">Lookbook</a></li>
+        <li><a class="nav-link" href="journal.html">Journal</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="booking.html">Booking</a></li>
+      </ul>
+      <button type="button" class="menu-toggle" data-menu-toggle
+              aria-expanded="false" aria-controls="mobile-menu">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        <span>Menu</span>
+      </button>
+    </nav>
+
+    <a class="wordmark" href="index.html" aria-label="Dprince Couture, home">DPRINCE <span>COUTURE</span></a>
+
+    <div class="header-utils">
+      <button type="button" class="bag-button" data-cart-open aria-haspopup="dialog">
+        <span aria-hidden="true">Bag</span>
+        <span class="bag-count" data-bag-count aria-hidden="true">0</span>
+        <span class="visually-hidden" data-bag-label>0 items in bag. Open shopping bag.</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
+  <div class="mobile-menu__head">
+    <span class="wordmark">DPRINCE <span>COUTURE</span></span>
+    <button type="button" class="icon-btn" data-menu-close aria-label="Close menu">&times;</button>
+  </div>
+  <nav aria-label="Mobile">
+    <ul class="mobile-menu__list">
+      <li><a class="mobile-menu__link" href="shop.html">Shop</a></li>
+      <li><a class="mobile-menu__link" href="lookbook.html">Lookbook</a></li>
+      <li><a class="mobile-menu__link" href="journal.html">Journal</a></li>
+      <li><a class="mobile-menu__link" href="about.html">About</a></li>
+      <li><a class="mobile-menu__link" href="booking.html">Booking</a></li>
+    </ul>
+  </nav>
+  <div class="mobile-menu__foot">
+    <a class="link small" href="contact.html">Contact the atelier</a>
+    <a class="link small" href="client-services.html">Client services</a>
+  </div>
+</div>
+
+<main id="main">
+  <section class="masthead">
+    <div class="container container--wide">
+      <div class="masthead__inner">
+        <p class="eyebrow">Client services</p>
+        <h1 class="masthead__title" data-split>Everything practical</h1>
+      </div>
+    </div>
+  </section>
+
+  <div class="container container--wide">
+    <div class="services-layout">
+      <nav class="services-nav" aria-label="Client services sections">
+        <a href="#shipping">Shipping</a>
+        <a href="#returns">Returns</a>
+        <a href="#sizing">Size guide</a>
+        <a href="#care">Garment care</a>
+        <a href="#payment">Payment</a>
+        <a href="#faq">Frequently asked</a>
+      </nav>
+
+      <div>
+        <section class="service-section" id="shipping" aria-labelledby="shipping-h">
+          <h2 id="shipping-h">Shipping</h2>
+          <p>
+            Ready-to-wear pieces are dispatched within two working days. Bespoke
+            commissions are collected from the atelier by appointment, or shipped on
+            request once the final fitting is signed off.
+          </p>
+          <table>
+            <caption class="visually-hidden">Delivery options and costs</caption>
+            <thead>
+              <tr><th scope="col">Destination</th><th scope="col">Time</th><th scope="col">Cost</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lagos &amp; Abuja</td><td>1&ndash;2 working days</td><td>&#8358;15,000</td></tr>
+              <tr><td>Elsewhere in Nigeria</td><td>3&ndash;5 working days</td><td>&#8358;15,000</td></tr>
+              <tr><td>Orders above &#8358;500,000</td><td>As above</td><td>Complimentary</td></tr>
+              <tr><td>International</td><td>7&ndash;14 working days</td><td>Quoted per order</td></tr>
+            </tbody>
+          </table>
+          <p>Ceremonial pieces are boxed flat with acid-free tissue and shipped insured.</p>
+        </section>
+
+        <section class="service-section" id="returns" aria-labelledby="returns-h">
+          <h2 id="returns-h">Returns</h2>
+          <p>
+            Ready-to-wear may be returned within 14 days of delivery, unworn, unwashed
+            and with tags attached. Write to the atelier first so we can issue a return
+            reference; unannounced returns are difficult to trace.
+          </p>
+          <p>
+            <strong>Bespoke commissions cannot be returned.</strong> They are cut to
+            your measurements from a pattern drafted for you. What we do instead is fit
+            twice before finishing, and alter free of charge afterwards for as long as
+            you own the garment.
+          </p>
+          <p>Accessories are returnable unless they have been strung or sized to order.</p>
+        </section>
+
+        <section class="service-section" id="sizing" aria-labelledby="sizing-h">
+          <h2 id="sizing-h">Size guide</h2>
+          <p>
+            Ready-to-wear is cut generously, in the tradition of the garments themselves.
+            If you are between sizes, take the smaller for a senator and the larger for a
+            kaftan or agbada.
+          </p>
+          <table>
+            <caption class="visually-hidden">Ready-to-wear measurements in centimetres</caption>
+            <thead>
+              <tr><th scope="col">Size</th><th scope="col">Chest</th><th scope="col">Waist</th><th scope="col">Shoulder</th><th scope="col">Length</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>S</td><td>96&ndash;101</td><td>81&ndash;86</td><td>44</td><td>78</td></tr>
+              <tr><td>M</td><td>102&ndash;107</td><td>87&ndash;92</td><td>46</td><td>80</td></tr>
+              <tr><td>L</td><td>108&ndash;113</td><td>93&ndash;98</td><td>48</td><td>82</td></tr>
+              <tr><td>XL</td><td>114&ndash;119</td><td>99&ndash;104</td><td>50</td><td>84</td></tr>
+              <tr><td>XXL</td><td>120&ndash;127</td><td>105&ndash;112</td><td>52</td><td>86</td></tr>
+            </tbody>
+          </table>
+          <p>
+            Ceremonial agbada is one generous cut and is measured by the sokoto and buba
+            beneath. For anything ceremonial we strongly recommend an appointment.
+          </p>
+          <a class="btn btn--secondary" href="booking.html">Book a measurement</a>
+        </section>
+
+        <section class="service-section" id="care" aria-labelledby="care-h">
+          <h2 id="care-h">Garment care</h2>
+          <p>
+            Embroidered and ceremonial pieces are dry clean only, and should go to a
+            cleaner who has handled metallic thread before. Ask them; a good one will
+            tell you honestly.
+          </p>
+          <p>
+            Store ceremonial garments folded with acid-free tissue between the embroidered
+            panels, never on a hanger &mdash; the weight of the cloth will distort the
+            shoulder over a year on a hook.
+          </p>
+          <p>
+            Cotton kaftans and senators improve with washing. Cold, gentle, inside out,
+            line dried in shade. Press while slightly damp.
+          </p>
+        </section>
+
+        <section class="service-section" id="payment" aria-labelledby="payment-h">
+          <h2 id="payment-h">Payment</h2>
+          <p class="checkout-notice">
+            <strong>This website is a frontend demonstration.</strong> No payment
+            processor is connected to it, no order can be placed through it, and no card
+            details are collected anywhere on this site. The bag and checkout exist to
+            show the shopping experience only.
+          </p>
+          <p>
+            In the atelier, commissions are taken with a 50&#37; deposit at the first
+            appointment and the balance on collection. We accept bank transfer and card
+            in person.
+          </p>
+          <p>Ready-to-wear is paid in full at the point of order.</p>
+        </section>
+
+        <section class="service-section" id="faq" aria-labelledby="faq-h">
+          <h2 id="faq-h">Frequently asked</h2>
+          <div class="accordion" data-accordion-static>
+
+        <div class="accordion__item">
+          <h3>
+            <button type="button" class="accordion__trigger" id="faq-button-0"
+                    aria-expanded="true" aria-controls="faq-panel-0">
+              <span>Do you ship outside Nigeria?</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="faq-panel-0" role="region" aria-labelledby="faq-button-0">
+            <div class="accordion__inner">Yes. International delivery is quoted per order because ceremonial pieces are boxed flat and shipped with insurance. Write to the atelier with your destination and we will quote before you commit.</div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <h3>
+            <button type="button" class="accordion__trigger" id="faq-button-1"
+                    aria-expanded="false" aria-controls="faq-panel-1">
+              <span>How long does a bespoke commission take?</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="faq-panel-1" role="region" aria-labelledby="faq-button-1">
+            <div class="accordion__inner">Ten to fourteen weeks for a ceremonial agbada, six to eight for a kaftan or senator. We do not compress this for a fee, because the compression would come out of the fittings.</div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <h3>
+            <button type="button" class="accordion__trigger" id="faq-button-2"
+                    aria-expanded="false" aria-controls="faq-panel-2">
+              <span>Can I supply my own cloth?</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="faq-panel-2" role="region" aria-labelledby="faq-button-2">
+            <div class="accordion__inner">For kaftan and senator commissions, yes. For ceremonial agbada we generally decline, because the embroidery is worked directly on the ground cloth and we cannot guarantee an unfamiliar weave will hold it.</div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <h3>
+            <button type="button" class="accordion__trigger" id="faq-button-3"
+                    aria-expanded="false" aria-controls="faq-panel-3">
+              <span>What if the garment does not fit on collection?</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="faq-panel-3" role="region" aria-labelledby="faq-button-3">
+            <div class="accordion__inner">It will not happen often, because of the basted fitting — but if it does, the alteration is free and it is our problem, not yours. Bring it back.</div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <h3>
+            <button type="button" class="accordion__trigger" id="faq-button-4"
+                    aria-expanded="false" aria-controls="faq-panel-4">
+              <span>Do you buy back or repair older pieces?</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="faq-panel-4" role="region" aria-labelledby="faq-button-4">
+            <div class="accordion__inner">We repair anything the house has made, at any age, for the cost of materials. Bring the pattern reference from the box if you still have it.</div>
+          </div>
+        </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="section"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="container container--wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="wordmark">DPRINCE <span>COUTURE</span></span>
+        <p class="small">Ceremonial tailoring, made to be inherited. Cut in Lagos and Abuja since 2014.</p>
+        <a class="btn-text" href="booking.html">Book an appointment</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="shop.html">All pieces</a></li>
+          <li><a href="shop.html?category=Agbada">Agbada</a></li>
+          <li><a href="shop.html?category=Kaftan">Kaftan</a></li>
+          <li><a href="shop.html?category=Senator">Senator</a></li>
+          <li><a href="shop.html?category=Accessories">Accessories</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>The House</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lookbook.html">Lookbook</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="booking.html">Book an appointment</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Client Services</h3>
+        <ul>
+          <li><a href="client-services.html#shipping">Shipping</a></li>
+          <li><a href="client-services.html#returns">Returns</a></li>
+          <li><a href="client-services.html#sizing">Size guide</a></li>
+          <li><a href="client-services.html#care">Garment care</a></li>
+          <li><a href="client-services.html#payment">Payment</a></li>
+          <li><a href="client-services.html#faq">Frequently asked</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="contact.html">Enquiries</a></li>
+          <li><a href="contact.html#lagos">Lagos atelier</a></li>
+          <li><a href="contact.html#abuja">Abuja atelier</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Dprince Couture. All rights reserved.</p>
+      <p>Lagos &middot; Abuja</p>
+    </div>
+  </div>
+</footer>
+
+<div class="drawer-backdrop" data-cart-backdrop></div>
+
+<aside class="drawer" data-cart-drawer role="dialog" aria-modal="true"
+       aria-labelledby="drawer-heading" aria-hidden="true">
+  <div class="drawer__head">
+    <h2 class="d4" id="drawer-heading">Your bag</h2>
+    <button type="button" class="icon-btn" data-cart-close aria-label="Close bag">&times;</button>
+  </div>
+  <div class="drawer__body">
+    <ul class="cart-lines" data-cart-lines role="list"></ul>
+    <div data-cart-empty></div>
+  </div>
+  <div class="drawer__foot" data-cart-has-items hidden>
+    <div class="cart-totals" data-cart-totals></div>
+    <a class="btn btn--primary btn--block" href="cart.html">View bag &amp; checkout</a>
+    <button type="button" class="btn btn--ghost btn--block" data-cart-close>Continue shopping</button>
+  </div>
+</aside>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

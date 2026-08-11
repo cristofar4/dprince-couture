@@ -1,0 +1,110 @@
+/* ==========================================================================
+   ANIMATION STATES — Dprince Couture
+
+   Pre-animation states are applied ONLY when the document carries
+   `.has-anim`, which an inline script in <head> adds when both are true:
+     1. JavaScript is running
+     2. prefers-reduced-motion is not set to "reduce"
+
+   Consequence: with JS disabled, or with reduced motion requested, every
+   element renders at its natural end state and nothing is ever left hidden.
+   ========================================================================== */
+
+/* ---- Fade + rise ---------------------------------------------------------
+   Used by product cards, journal cards, pillars, generic section content. */
+.has-anim [data-anim='rise'] {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+  will-change: transform, opacity;
+}
+
+.has-anim [data-anim='rise-sm'] {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  will-change: transform, opacity;
+}
+
+/* ---- Fade only ---------------------------------------------------------- */
+.has-anim [data-anim='fade'] { opacity: 0; will-change: opacity; }
+
+/* ---- Clip reveal for media ---------------------------------------------- */
+.has-anim [data-anim='clip'] {
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+}
+.has-anim [data-anim='clip-up'] {
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
+}
+
+/* ---- Rule draw ---------------------------------------------------------- */
+.has-anim [data-anim='draw'] {
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
+}
+
+/* ---- Split text ----------------------------------------------------------
+   JS wraps each line in .line > .line__inner. The mask lives on .line so the
+   inner element can translate without the text bleeding outside its box. */
+.has-anim [data-split] .line { display: block; overflow: hidden; }
+.has-anim [data-split] .line__inner {
+  display: block;
+  transform: translate3d(0, 105%, 0);
+  will-change: transform;
+}
+
+/* Word-level split, used by the brand statement */
+.has-anim [data-split-words] .word { display: inline-block; opacity: 0.12; }
+
+/* ---- Hero media ---------------------------------------------------------- */
+.has-anim .hero__media { clip-path: inset(0 0 100% 0); }
+.has-anim .hero__media video,
+.has-anim .hero__media img { transform: scale(1.08); }
+
+/* ---- Intro loader --------------------------------------------------------
+   The overlay only exists in the DOM when .has-anim is present AND the intro
+   has not already played this session — main.js removes it otherwise. */
+.has-anim .intro__char { transform: translate3d(0, 110%, 0); }
+
+/* ==========================================================================
+   REDUCED MOTION — belt and braces
+   The JS layer already skips these animations. These rules guarantee the end
+   state even if a stylesheet loads before the script decides.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-anim],
+  [data-split] .line__inner,
+  [data-split-words] .word,
+  .hero__media,
+  .hero__media video,
+  .hero__media img {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    will-change: auto !important;
+  }
+
+  .intro { display: none !important; }
+  .transition-overlay { display: none !important; }
+  .cursor { display: none !important; }
+
+  /* Horizontal lookbook falls back to a vertical stack — never pinned */
+  .lookbook__viewport { overflow: visible !important; }
+  .lookbook__track {
+    flex-direction: column;
+    transform: none !important;
+    gap: var(--s7);
+  }
+  .look { width: 100% !important; max-width: 32rem; }
+  .lookbook__progress { display: none; }
+}
+
+/* ==========================================================================
+   PERFORMANCE
+   will-change is expensive when left on permanently. JS removes it after each
+   timeline completes; this class is the hook it uses.
+   ========================================================================== */
+
+.anim-done { will-change: auto !important; }
