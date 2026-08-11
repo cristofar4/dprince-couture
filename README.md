@@ -224,22 +224,44 @@ and must also be replaced.
 
 ## How a commission request reaches the owner
 
-Right now it does not — and the site says so on the form rather than implying
-otherwise. This is **demo mode**: a request is validated, given a reference
-(`DPC-…`) and recorded in the owner's dashboard, but nothing leaves the browser.
+**Live.** The commission form posts to Formspree, which emails the atelier.
+Delivery mode is set in `assets/js/modules/delivery.js`:
 
-Switching that on is one line. Open `assets/js/modules/delivery.js` and change
-`MODE`:
+```js
+MODE: 'formspree',
+formspree: { endpoint: 'https://formspree.io/f/mkjwrzow' }
+```
+
+Each email carries the reference (`DPC-…`), the chosen style, cloth, colour,
+occasion, date needed, the client's contact details, every measurement they
+gave, and their message — both as structured fields and as a readable
+transcript, so it is legible straight from the inbox.
+
+**Before you rely on it, send one real test.** Formspree needs a new form
+activated: the first submission triggers a confirmation email to the form
+owner, and until that is clicked, submissions are held rather than delivered.
+Run the site, submit the form once, and check the inbox.
+
+The free tier covers roughly 50 submissions a month. Past that Formspree holds
+them and emails a warning, so keep an eye on the count if enquiries pick up.
+
+**If a send fails** — server error, or the visitor is offline — the form says
+so, stays filled in so nothing is retyped, and the attempt is still recorded in
+the dashboard marked undelivered. A failure never shows a false success.
+
+### Other delivery routes
+
+Change `MODE` to switch; all are already written.
 
 | Mode | What happens | Setup |
 |---|---|---|
-| `'demo'` | Nothing is sent. Recorded locally. | None — current setting |
-| `'formspree'` | Emailed to the owner within a minute | Sign up at formspree.io, paste the form ID into `DELIVERY.formspree.endpoint`. Free tier ≈50/month |
-| `'whatsapp'` | Opens WhatsApp pre-filled to the owner | Put the number in `DELIVERY.whatsapp.number`, international format, digits only |
-| `'email'` | Opens the visitor's mail app pre-filled | Put the address in `DELIVERY.email.address` |
+| `'formspree'` | Emailed to the atelier | **current** |
+| `'whatsapp'` | Opens WhatsApp pre-filled | number already set: `2349036961268` |
+| `'email'` | Opens the visitor's mail app | set `DELIVERY.email.address` |
+| `'demo'` | Nothing sent, recorded locally | none — useful while testing |
 
-All four routes are already written. The notice on the commission form changes
-to match whichever mode is active, so the site never overstates what it does.
+The notice on the form rewrites itself to match whichever mode is active, so
+the site never overstates what it does.
 
 ---
 
@@ -368,14 +390,16 @@ always carry a glyph as well as colour. All touch targets are at least
 
 ## Verified
 
-Driven with Playwright at 360 / 390 / 768 / 1440px — **122 assertions passing**:
+Driven with Playwright at 360 / 390 / 768 / 1440px — **143 assertions passing**:
 
 - all 11 pages load with no console errors, one `h1`, alt text on every image
 - no cart markup survives anywhere
 - search: opens, focuses, filters live, empty state, Escape closes
 - hero prompt: renders, cycles, fixed height so it cannot shift layout
 - commission: style picker, 9 measurement fields, validation, reference issued,
-  request recorded, honest demo-mode message
+  request recorded, notice matches the live delivery mode
+- Formspree integration: correct endpoint, method, headers and payload; server
+  error, offline and success paths all handled without losing the visitor's work
 - product → commission handoff preselects the right design
 - dashboard: photo upload and downscale, design saved, appears on shop and in
   search, edit, delete, request list

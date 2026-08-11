@@ -15,17 +15,19 @@
    ========================================================================== */
 
 export const DELIVERY = {
-  MODE: 'demo',
+  MODE: 'formspree',
 
   formspree: {
-    // Sign up at formspree.io, create a form, paste its ID here.
-    // Free tier covers roughly 50 submissions a month.
-    endpoint: 'https://formspree.io/f/YOUR_FORM_ID'
+    // Live form. Free tier covers roughly 50 submissions a month; past that
+    // Formspree holds them and emails a warning, so watch the count if the
+    // house starts getting real traffic.
+    endpoint: 'https://formspree.io/f/mkjwrzow'
   },
 
   whatsapp: {
     // International format, digits only — no +, spaces or dashes.
-    number: '2348000000000'
+    // 0903 696 1268 in local Nigerian form.
+    number: '2349036961268'
   },
 
   email: {

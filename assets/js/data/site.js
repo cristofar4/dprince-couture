@@ -56,31 +56,34 @@ export const SITE = {
       links: [
         { label: 'Enquiries', href: 'contact.html' },
         { label: 'Instagram', href: 'https://instagram.com', external: true },
-        { label: 'WhatsApp', href: 'https://wa.me/2348000000000', external: true }
+        { label: 'WhatsApp', href: 'https://wa.me/2349036961268', external: true }
       ]
     }
   ],
 
-  /* PLACEHOLDER CONTACT DETAILS — replace before this site goes live.
-     See README, "Replacing brand content". */
+  /* The phone number is real. The street addresses below are still
+     placeholders — replace them before this site goes live.
+     Both ateliers currently share one number; give Abuja its own when
+     there is one. */
   ateliers: [
     {
       city: 'Lagos',
       address: ['14 Musa Yar’Adua Street', 'Victoria Island', 'Lagos'],
       hours: 'Monday – Saturday, 10:00 – 19:00',
-      phone: '+234 800 000 0000'
+      phone: '+234 903 696 1268'
     },
     {
       city: 'Abuja',
       address: ['8 Gana Street', 'Maitama', 'Abuja'],
       hours: 'Monday – Saturday, 10:00 – 18:00',
-      phone: '+234 800 000 0001'
+      phone: '+234 903 696 1268'
     }
   ],
 
   email: 'atelier@dprincecouture.com',
 
-  // Commerce rules — used by the cart for totals.
+  // Delivery rates — shown on the client-services page. Nothing is sold
+  // online; these describe what the atelier charges to ship a finished piece.
   shipping: {
     flatRate: 15000,
     freeThreshold: 500000,
