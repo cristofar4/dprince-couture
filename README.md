@@ -350,12 +350,20 @@ and reverted per breakpoint with no leaks. The horizontal lookbook pins only
 at ≥1024px, for 1.2 viewports; below that it is a native scroll-snap carousel
 with no pinning at all.
 
-**A note on `yPercent` and CSS percentage transforms.** The pre-animation
-states in `animations.css` use `translate3d(0, 105%, 0)`. GSAP parses that into
-its *pixel* `y` property, so setting `yPercent` alone stacks on top of it and
-the reveal finishes at the CSS offset instead of at zero. Every split-line and
-intro-character reveal therefore sets `{ y: 0, yPercent: … }` explicitly. If
-you add a reveal that translates by percentage, do the same.
+**A note on percentage transforms and GSAP — read this before adding one.**
+Several resting states in CSS are percentage translates: `translate3d(0,105%,0)`
+on split lines, `translateX(100%)` on the mobile menu. GSAP parses those into
+its *pixel* `x`/`y` properties, so setting `xPercent`/`yPercent` alone stacks on
+top (200% total) and the tween back to `0` lands on the CSS offset rather than
+at zero.
+
+This bit twice. The hero headline never appeared, and later the mobile menu
+"opened" a full viewport off-screen — `aria-hidden` flipped, focus was trapped,
+and nothing was visible. Every such animation therefore sets the pixel
+component explicitly: `{ x: 0, xPercent: 100 }`, `{ y: 0, yPercent: 105 }`. If
+you add a reveal that translates by percentage, do the same — and assert the
+element's **bounding rect**, not just its attributes, or the bug hides from
+your tests exactly as it hid from mine.
 
 ### Reduced motion
 
@@ -390,7 +398,7 @@ always carry a glyph as well as colour. All touch targets are at least
 
 ## Verified
 
-Driven with Playwright at 360 / 390 / 768 / 1440px — **143 assertions passing**:
+Driven with Playwright at 360 / 390 / 768 / 1440px — **175 assertions passing**:
 
 - all 11 pages load with no console errors, one `h1`, alt text on every image
 - no cart markup survives anywhere
@@ -404,6 +412,12 @@ Driven with Playwright at 360 / 390 / 768 / 1440px — **143 assertions passing*
 - dashboard: photo upload and downscale, design saved, appears on shop and in
   search, edit, delete, request list
 - hamburger visible at 360/390/768 with three 2px bars and a ≥44px target
+- mobile menu, driven by real taps: opens **on screen**, fills the viewport,
+  links pass a hit test at their centre, closes, and reopens cleanly — checked
+  on first visit, on a repeat visit with the intro skipped, and under reduced
+  motion
+- product cards: names and prices share a baseline across every row at every
+  breakpoint, and colour never wraps to a second line
 - no horizontal overflow at any breakpoint
 - reduced motion: nothing hidden, nothing pinned, no cursor, no intro, and the
   hero prompt still cycles readably

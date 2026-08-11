@@ -48,7 +48,7 @@ export function productCard(product, { eager = false } = {}) {
              data-cursor="View">${escapeHtml(product.name)}</a>
         </h3>
         <p class="product-card__meta">
-          <span>${escapeHtml(product.colour)}</span>
+          <span class="product-card__colour">${escapeHtml(product.colour)}</span>
           <span class="product-card__price">From ${formatPrice(product.price)}</span>
         </p>
       </div>

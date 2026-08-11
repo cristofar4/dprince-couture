@@ -63,7 +63,11 @@ function initMobileMenu() {
     stopScroll();
 
     if (gsap && !reduced) {
-      gsap.set(menu, { xPercent: 100 });
+      // x:0 is load-bearing. The CSS resting state is translateX(100%), which
+      // GSAP parses into its pixel `x` property; setting xPercent alone stacks
+      // on top (200% total) and the tween to xPercent:0 leaves the panel a full
+      // viewport off-screen — open, focus-trapped, and invisible.
+      gsap.set(menu, { x: 0, xPercent: 100 });
       gsap.to(menu, { xPercent: 0, duration: 0.5, ease: 'power3.out' });
       gsap.fromTo(links,
         { y: 24, opacity: 0 },

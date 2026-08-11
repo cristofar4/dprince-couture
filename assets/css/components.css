@@ -624,13 +624,15 @@ select.field__control {
   display: grid;
   gap: var(--s1);
   padding: var(--s4) var(--s1) var(--s1);
-  margin-block-start: auto;
 }
 
 .product-card__name {
   font-size: var(--t-body);
   font-weight: var(--w-medium);
   line-height: 1.35;
+  /* Two lines are reserved whether or not the name needs them, so a long
+     title never drops its own card's price out of line with the row. */
+  min-height: calc(1.35em * 2);
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 0.25em;
@@ -648,8 +650,21 @@ select.field__control {
   font-size: var(--t-small);
   color: var(--sage);
 }
+/* The colour is the flexible half and truncates; the price never wraps and
+   never shrinks. Without this a long colour name wraps to a second line,
+   which used to push one card's text out of step with the rest of its row. */
+.product-card__colour {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 /* Made to order, so every figure is a starting point, never a checkout price */
-.product-card__price { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.product-card__price {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 
 /* ==========================================================================
    FILTER BAR
@@ -929,8 +944,12 @@ select.field__control {
 .announcer {
   position: fixed;
   bottom: var(--s5);
-  left: 50%;
-  transform: translateX(-50%);
+  /* Centred without a transform on purpose: GSAP animates this element's y,
+     and it would parse a translateX(-50%) into a cached pixel x taken from the
+     first toast's width — leaving later, differently-sized toasts off-centre. */
+  inset-inline: 0;
+  margin-inline: auto;
+  width: max-content;
   z-index: var(--z-menu);
   padding: var(--s3) var(--s5);
   background-color: var(--ink);
