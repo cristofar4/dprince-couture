@@ -367,6 +367,15 @@ deliberate.
 
 ## Animation notes
 
+**Scrollable overlays need `data-lenis-prevent`.** Lenis binds its touch
+listeners with `passive: false` and calls `preventDefault()` on `touchmove`,
+which kills native scrolling *inside* any overlay above the page — even while
+Lenis itself is stopped. The mobile menu and the search results both carry
+`data-lenis-prevent`, which hands those elements back to the browser. Without
+it the menu opened correctly, reported `overflow-y: auto`, held 1039px of
+content in a 700px box, and would not move under a finger. Add the attribute
+to any new scrollable overlay.
+
 **Lenis and ScrollTrigger share one loop.** GSAP's ticker drives
 `lenis.raf()`; there is no second `requestAnimationFrame`. Lenis scroll events
 push `ScrollTrigger.update`. ScrollTrigger refreshes after `document.fonts.ready`,
@@ -425,7 +434,7 @@ always carry a glyph as well as colour. All touch targets are at least
 
 ## Verified
 
-Driven with Playwright across fourteen device sizes from 320×640 to 1920×1080 — **303 assertions passing**:
+Driven with Playwright across fourteen device sizes from 320×640 to 1920×1080 — **337 assertions passing**:
 
 - all 11 pages load with no console errors, one `h1`, alt text on every image
 - no cart markup survives anywhere
@@ -455,6 +464,10 @@ Driven with Playwright across fourteen device sizes from 320×640 to 1920×1080 
 - the product grid resolves to 1 / 2 / 3 / 4 columns at the right widths, and
   the smallest card image is 228px rather than the 152px it used to be
 - the atelier and campaign films render landscape, not as portrait slivers
+- **touch scrolling**, driven by real CDP touch events rather than scripted
+  `scrollTop`: the menu and the search results both scroll under a finger, the
+  drag reaches the end of the menu, the page behind stays locked while an
+  overlay is open, and page scrolling resumes once it closes
 - no horizontal overflow at any breakpoint
 - reduced motion: nothing hidden, nothing pinned, no cursor, no intro, and the
   hero prompt still cycles readably
