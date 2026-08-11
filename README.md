@@ -179,6 +179,7 @@ aspect ratios or the grid will shift:
 | Slot | Ratio | Path |
 |---|---|---|
 | Product card / gallery | 3:4 | `assets/img/products/` |
+| Atelier & campaign film frame | 4:3 (`--ar-wide`) | centre-cropped from the 9:16 source |
 | Editorial | 4:5 | `assets/img/editorial/` |
 | Journal card | 4:5 | `assets/img/journal/` |
 | Campaign video | 9:16 | `assets/video/` |
@@ -338,6 +339,32 @@ separation comes from whitespace and hairlines.
 
 ---
 
+## Responsive behaviour
+
+| Element | Desktop | Tablet | Phone |
+|---|---|---|---|
+| Product grid | 4 cols ≥1280, 3 cols 900–1279 | 2 cols 600–899 | **1 col ≤599** — the garment is the product |
+| Hero | portrait film panel beside the headline | film above, headline below | full-bleed 9:16 |
+| Atelier / campaign film | 4:3 landscape | 4:3 landscape | 4:3 landscape |
+| Lookbook | pinned horizontal | pinned, shorter distance | **unpinned** — native swipe carousel |
+| Nav | inline links ≥1200 | hamburger | hamburger + contact block |
+| Cursor | custom | disabled | disabled |
+
+**On the film crops.** Every supplied clip is 9:16. Left at that ratio inside a
+wide layout the atelier film sat as a 396×704 strip in a 416px column with
+empty space above and below — it read as stranded rather than composed. The
+craft and campaign frames are now 4:3 and `object-fit: cover` centre-crops the
+source. That throws away most of the original frame, which is the right trade
+for close work on hands and cloth. The hero and the lookbook stay portrait,
+because there the full-height figure *is* the shot.
+
+**On column counts.** They step down a size earlier than a typical shop grid.
+This house sells one garment at a time, not a wall of SKUs, and a 150px
+thumbnail cannot sell a ceremonial agbada. Single column on a phone is
+deliberate.
+
+---
+
 ## Animation notes
 
 **Lenis and ScrollTrigger share one loop.** GSAP's ticker drives
@@ -398,7 +425,7 @@ always carry a glyph as well as colour. All touch targets are at least
 
 ## Verified
 
-Driven with Playwright at 320 / 360 / 390 / 412 / 768 / 1024 / 1440px — **245 assertions passing**:
+Driven with Playwright across fourteen device sizes from 320×640 to 1920×1080 — **303 assertions passing**:
 
 - all 11 pages load with no console errors, one `h1`, alt text on every image
 - no cart markup survives anywhere
@@ -421,8 +448,13 @@ Driven with Playwright at 320 / 360 / 390 / 412 / 768 / 1024 / 1440px — **245 
 - mobile menu contact block: call, WhatsApp and email are all ≥44px targets,
   inside the panel, and pass a hit test; the commission CTA stays reachable
   after scrolling, down to a 320×640 screen
-- the six-item nav does not collide with the wordmark or search at ≥1024px,
+- the seven-item nav does not collide with the wordmark or search at ≥1200px,
   and the hamburger takes over below that
+- eight pages checked on every one of fourteen device sizes, for horizontal
+  overflow and for card text escaping its panel
+- the product grid resolves to 1 / 2 / 3 / 4 columns at the right widths, and
+  the smallest card image is 228px rather than the 152px it used to be
+- the atelier and campaign films render landscape, not as portrait slivers
 - no horizontal overflow at any breakpoint
 - reduced motion: nothing hidden, nothing pinned, no cursor, no intro, and the
   hero prompt still cycles readably
