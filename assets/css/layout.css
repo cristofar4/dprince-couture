@@ -55,7 +55,10 @@
 .start-7  { grid-column-start: 7; }
 .start-8  { grid-column-start: 8; }
 
-/* ---- Product grids ------------------------------------------------------ */
+/* ---- Product grids ------------------------------------------------------
+   Column counts step down early so each card stays large. A garment is the
+   product here, and a 150px thumbnail cannot sell one — on a phone the grid
+   is a single column so the piece fills the screen. */
 
 .product-grid {
   display: grid;
@@ -64,6 +67,22 @@
 }
 .product-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s9) var(--s5); }
 .product-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s8) var(--s5); }
+
+@media (max-width: 1279px) {
+  .product-grid    { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 899px) {
+  .product-grid,
+  .product-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 599px) {
+  .product-grid,
+  .product-grid--3,
+  .product-grid--2 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s7);
+  }
+}
 
 /* ---- Editorial split ---------------------------------------------------- */
 
@@ -130,9 +149,6 @@
   .col-8, .col-9, .col-10, .col-11, .col-12 { grid-column: span 8; }
   .start-2, .start-3, .start-4, .start-6, .start-7, .start-8 { grid-column-start: auto; }
 
-  .product-grid    { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .product-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
   .split, .split--reverse, .split--even { grid-template-columns: 1fr; }
 
   .section-head {
@@ -151,12 +167,4 @@
   .col-7, .col-8, .col-9, .col-10,
   .col-11, .col-12 { grid-column: span 4; }
 
-  .product-grid,
-  .product-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s6) var(--gutter); }
-  .product-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-/* Small phone */
-@media (max-width: 479px) {
-  .product-grid--3 { grid-template-columns: 1fr; }
 }

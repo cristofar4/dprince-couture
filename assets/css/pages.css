@@ -117,11 +117,10 @@
    SPLIT CAMPAIGN
    ========================================================================== */
 
-.campaign-split { align-items: stretch; }
+.campaign-split { align-items: center; }
 .campaign-split__media {
   position: relative;
-  aspect-ratio: var(--ar-campaign);
-  max-height: 42rem;
+  aspect-ratio: var(--ar-wide);
   overflow: hidden;
   background-color: var(--rule);
 }
@@ -229,14 +228,16 @@
 .craft { position: relative; }
 .craft__inner {
   display: grid;
-  grid-template-columns: minmax(0, 26rem) 1fr;
-  gap: clamp(var(--s5), 6vw, var(--s10));
+  grid-template-columns: 6fr 5fr;
+  gap: clamp(var(--s5), 5vw, var(--s9));
   align-items: center;
 }
+/* Landscape, not portrait. The atelier film is 9:16, but its subject is hands
+   and cloth on a table, so a centre crop to 4:3 loses nothing and fills the
+   column instead of leaving a tall strip stranded in white space. */
 .craft__media {
   position: relative;
-  aspect-ratio: var(--ar-campaign);
-  max-height: 44rem;
+  aspect-ratio: var(--ar-wide);
   overflow: hidden;
   background-color: var(--rule);
 }
@@ -265,7 +266,6 @@
 
 @media (max-width: 1023px) {
   .craft__inner { grid-template-columns: 1fr; }
-  .craft__media { max-height: 32rem; }
 }
 
 /* ==========================================================================

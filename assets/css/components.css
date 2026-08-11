@@ -754,6 +754,12 @@ select.field__control {
   color: var(--ink);
 }
 
+/* At one column there is no neighbouring card to line up with, so the
+   reserved second title line is just a gap. Give it back. */
+@media (max-width: 599px) {
+  .product-card__name { min-height: 0; }
+}
+
 /* ==========================================================================
    FILTER BAR
    ========================================================================== */
@@ -1061,7 +1067,10 @@ select.field__control {
   .footer-brand { grid-column: span 2; }
 }
 
-@media (max-width: 1023px) {
+/* Seven items plus the wordmark and search need about 1120px. Below that the
+   hamburger takes over — which is no loss, since the mobile menu carries the
+   contact block and a Home link of its own. */
+@media (max-width: 1199px) {
   .nav-list { display: none; }
   .menu-toggle { display: inline-flex; }
   .header-inner { grid-template-columns: auto 1fr auto; }

@@ -125,6 +125,11 @@
   --ar-campaign: 9 / 16;
   --ar-split: 3 / 2;
   --ar-square: 1 / 1;
+  /* Landscape frames for editorial media. The source films are all 9:16, so
+     these crop hard — which is right for close work like hands and cloth, and
+     stops a vertical clip sitting in a wide layout as a stranded sliver. */
+  --ar-wide: 4 / 3;
+  --ar-cinema: 16 / 9;
 
   /* ---- Motion ----------------------------------------------------------- */
   --dur-fast: 0.25s;
